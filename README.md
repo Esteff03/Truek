@@ -12,6 +12,11 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 
 
+![image](https://github.com/user-attachments/assets/c559dba5-7963-4441-b2c8-9e64468da6b8)
+
+
+
+
 *Proyecto educativo realizado por alumnos del IES Juan de la Cierva.*
 
 
