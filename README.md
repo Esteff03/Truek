@@ -26,7 +26,9 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 
 Paleta de colores:
-![AdobeColor-My Color Theme](https://github.com/user-attachments/assets/a40e2862-4055-44ee-854b-9b57a12e7afc)
+
+![image](https://github.com/user-attachments/assets/b8812636-0ed9-4665-954f-0bf2d038d62a)
+
 
 
 
