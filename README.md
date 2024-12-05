@@ -12,7 +12,7 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 
 
-Proyecto educativo realizado por alumnos del IES Juan de la Cierva.
+**Proyecto educativo realizado por alumnos del IES Juan de la Cierva.*
 
 
 
