@@ -25,6 +25,11 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 
 
+Paleta de colores:
+![AdobeColor-My Color Theme](https://github.com/user-attachments/assets/a40e2862-4055-44ee-854b-9b57a12e7afc)
+
+
+
 
 *Proyecto educativo realizado por alumnos del IES Juan de la Cierva.*
 
