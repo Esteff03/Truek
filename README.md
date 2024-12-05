@@ -31,6 +31,13 @@ Paleta de colores:
 
 
 
+Roles de desarrollo: 
+
+Scrum Master: Benjamin
+Cloud Master: Sindy 
+Designer: Javier
+Designer: Sergio
+
 
 
 *Proyecto educativo realizado por alumnos del IES Juan de la Cierva.*
