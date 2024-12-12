@@ -4,7 +4,15 @@ Aplicación móvil para intercambio de productos o servicios, sin la necesidad d
 
 *Splash*
 
-![image](https://github.com/user-attachments/assets/2f997e42-2b37-43bf-9539-b05ae5ca2d40)
+
+![image](https://github.com/user-attachments/assets/294b8039-f587-44d9-bef3-6896ec8cdf32)
+
+
+
+
+![image](https://github.com/user-attachments/assets/5b278731-dc9d-45d4-8e8a-dc8a3826aed9)
+
+
 
 
 
@@ -16,18 +24,21 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 *Login*
 
-![image](https://github.com/user-attachments/assets/c559dba5-7963-4441-b2c8-9e64468da6b8)
+![image](https://github.com/user-attachments/assets/c090b980-b671-406e-846b-9e584a9de668)
 
 
 
-![image](https://github.com/user-attachments/assets/11292b22-f8fe-4058-9b06-137df56d8140)
+
+![image](https://github.com/user-attachments/assets/d61ec46a-9676-4242-b03f-2d88264e5463)
+
 
 
 
 
 Paleta de colores:
 
-![image](https://github.com/user-attachments/assets/b8812636-0ed9-4665-954f-0bf2d038d62a)
+#A004FF
+#6CFFC1
 
 
 
