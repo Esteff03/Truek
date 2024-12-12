@@ -35,12 +35,6 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 
 
-Paleta de colores:
-
-#A004FF
-#6CFFC1
-
-
 
 Roles de desarrollo: 
 
