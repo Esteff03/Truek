@@ -35,6 +35,8 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 
 
+Enlace figma: https://www.figma.com/design/g5gElOIdZWXgq2P8IEJk5P/Truek?node-id=0-1&p=f&t=Wh73LkqWBYenrGI8-0
+
 
 Roles de desarrollo: 
 
