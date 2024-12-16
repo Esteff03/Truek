@@ -2,6 +2,10 @@
 
 Aplicación móvil para intercambio de productos o servicios, sin la necesidad de utilizar dinero, ya que se pueden realizar trueques. 
 
+
+[Figma](https://www.figma.com/design/g5gElOIdZWXgq2P8IEJk5P/Truek?node-id=0-1&p=f&t=Wh73LkqWBYenrGI8-0)
+
+
 *Splash*
 
 
