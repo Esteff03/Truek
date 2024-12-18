@@ -3,6 +3,7 @@
 Aplicación móvil para intercambio de productos o servicios, sin la necesidad de utilizar dinero, ya que se pueden realizar trueques. 
 
 [Trello](https://trello.com/invite/b/674da37a74943d6ec98d884d/ATTI4506a54cb7a89d297eabd50201a6eaccCEE87838/truek)
+
 [Figma](https://www.figma.com/design/g5gElOIdZWXgq2P8IEJk5P/Truek?node-id=0-1&p=f&t=Wh73LkqWBYenrGI8-0)
 
 
