@@ -3,6 +3,10 @@ package com.truek;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -26,11 +30,45 @@ public class Splash extends AppCompatActivity {
             return insets;
         });
 
-        // Cambiar a la siguiente pantalla después de 3 segundos
+        new Handler().postDelayed(() -> {
+            startAnimationSequence();
+        }, 600);
+    }
+
+    private void startAnimationSequence() {
+        ImageView bubbleTopLeft = findViewById(R.id.bubble_top_left);
+        ImageView bubbleBottomLeft = findViewById(R.id.bubble_bottom_left);
+        ImageView bubbleTopRight = findViewById(R.id.bubble_top_right);
+        ImageView logo = findViewById(R.id.logo);
+        TextView appName = findViewById(R.id.app_name);
+
+        bubbleTopLeft.setVisibility(View.VISIBLE);
+        bubbleTopLeft.startAnimation(android.view.animation.AnimationUtils.loadAnimation(this, R.anim.fade_in));
+
+        new Handler().postDelayed(() -> {
+            bubbleBottomLeft.setVisibility(View.VISIBLE);
+            bubbleBottomLeft.startAnimation(android.view.animation.AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        }, 500);
+
+        new Handler().postDelayed(() -> {
+            bubbleTopRight.setVisibility(View.VISIBLE);
+            bubbleTopRight.startAnimation(android.view.animation.AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        }, 1000);
+
+        new Handler().postDelayed(() -> {
+            logo.setVisibility(View.VISIBLE);
+            logo.startAnimation(android.view.animation.AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        }, 1500);
+
+        new Handler().postDelayed(() -> {
+            appName.setVisibility(View.VISIBLE);
+            appName.startAnimation(android.view.animation.AnimationUtils.loadAnimation(this, R.anim.fade_in));
+        }, 2000);
+
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(Splash.this, MainActivity.class);
             startActivity(intent);
             finish();
-        }, 3000); // 3000 ms = 3 segundos
+        }, 3500);
     }
 }
