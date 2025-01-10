@@ -16,6 +16,8 @@
         <!-- SplashActivity configurada como la actividad principal -->
         <activity
             android:name=".SplashActivity"
+        <activity
+            android:name=".Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
