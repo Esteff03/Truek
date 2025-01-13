@@ -1,9 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
     <style name="Base.Theme.Truek" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Light theme customizations -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/lilac</item>
+        <item name="colorSecondary">@color/mint_green</item>
+        <item name="colorSecondaryVariant">@color/aqua</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorOnSecondary">@android:color/black</item>
+        <item name="android:navigationBarColor">@color/colorFondo</item>
+        <item name="android:statusBarColor">@color/purple_500</item>
+
+        <!-- Customize typography -->
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:textColorSecondary">@color/gray</item>
+
+        <!-- Customize buttons -->
+        <item name="buttonStyle">@style/Widget.Material3.Button</item>
+
     </style>
 
-    <style name="Theme.Truek" parent="Base.Theme.Truek" />
+    <!-- Extended theme with no changes. It inherits from the base theme. -->
+    <style name="Theme.Truek" parent="Base.Theme.Truek">
+        <!-- You can add more customizations here, if needed -->
+    </style>
+
 </resources>
