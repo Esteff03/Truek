@@ -8,6 +8,22 @@
     tools:context=".Login">
 
 
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95"
+        />
     <ImageView
         android:id="@+id/bubble2"
         android:layout_width="wrap_content"
@@ -62,11 +78,11 @@
         android:textColor="@color/black"
         android:textSize="50sp"
         android:textStyle="bold"
+        android:translationY="-35dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="parent"
-        android:translationX="19dp"
-        android:translationY="20dp"
+
         />
 
     <TextView
@@ -74,18 +90,66 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_message"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:layout_marginTop="-200dp"
-        android:translationX="19dp"
-        android:translationY="-19dp"
+        android:translationY="-85dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textloging"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
         />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/field1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/textwelcome"
+        style="@style/input_login">
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_edittext"
+            android:hint="@string/user"
+            android:alpha="0.9"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fiel2"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/field1"
+        app:passwordToggleEnabled="true"
+        style="@style/input_login2">
 
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:background="@drawable/rounded_edittext"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/button1"
+        android:onClick="openMainActivity"
+        android:text="@string/next"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/fiel2"
+        style="@style/button_style_next" />
+
+    <Button
+        android:id="@+id/button2"
+        android:onClick="openSignup"
+        android:text="@string/cancel"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/button1"
+        style="@style/button_style_cancel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
