@@ -9,4 +9,5 @@
     <color name="blue_light">#D9E4FF</color>
     <color name="mint_green">#6CFFC1</color>
     <color name="aqua">#C0F5EF</color>
+    <color name="white_login_input">#F8F8F8</color>
 </resources>
