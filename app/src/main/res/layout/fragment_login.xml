@@ -133,7 +133,6 @@
 
     <Button
         android:id="@+id/button1"
-        android:onClick="openMainActivity"
         android:text="@string/next"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -142,7 +141,6 @@
 
     <Button
         android:id="@+id/button2"
-        android:onClick="openSignup"
         android:text="@string/cancel"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
