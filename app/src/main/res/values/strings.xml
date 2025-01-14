@@ -2,4 +2,6 @@
     <string name="app_name">Truek</string>
 
 
+    <string name="login">Login</string>
+    <string name="login_message">Good to see you back!</string>
 </resources>
