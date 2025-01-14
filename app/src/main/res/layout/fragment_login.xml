@@ -5,9 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
-
-
+    tools:context=".LoginFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -135,6 +133,7 @@
 
     <Button
         android:id="@+id/button1"
+        android:onClick="openMainActivity"
         android:text="@string/next"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
@@ -143,11 +142,11 @@
 
     <Button
         android:id="@+id/button2"
+        android:onClick="openSignup"
         android:text="@string/cancel"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/button1"
         style="@style/button_style_cancel" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
