@@ -34,8 +34,8 @@ public class MainView extends AppCompatActivity {
 
         // Aplicar las animaciones de entrada y salida
         fragmentTransaction.setCustomAnimations(
-                R.anim.anim_rigth_left,  // Animación para la entrada
-                R.anim.anim_left_rigth   // Animación para la salida
+                R.anim.anim_rigth_left,
+                R.anim.anim_left_rigth
         );
 
         // Reemplazar el fragmento
