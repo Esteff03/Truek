@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--DIMENSIONES PARA EL activity_main_view-->
 <resources>
     <dimen name="margin_large">32dp</dimen>
     <dimen name="margin_medium">24dp</dimen>
