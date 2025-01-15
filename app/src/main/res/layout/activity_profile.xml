@@ -136,7 +136,7 @@
         android:id="@+id/editProfileButton"
         android:layout_width="351dp"
         android:layout_height="38dp"
-        android:background="@drawable/bg_rounded_box"
+        android:background="@drawable/main_bg_roundedbox"
         android:text="Edit Profile"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
