@@ -19,14 +19,16 @@
         android:theme="@style/Theme.Truek"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true" />
+            android:name=".CreateAccount"
+            android:exported="false" />
         <activity
             android:name=".Profile"
             android:exported="true" />
         <activity
             android:name=".Splash"
             android:exported="true">
+
+            <!-- Intent filter should be placed inside the activity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,6 +38,9 @@
         <activity
             android:name=".MainView"
             android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"> </activity>
 
         <meta-data
             android:name="preloaded_fonts"
