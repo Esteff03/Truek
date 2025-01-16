@@ -2,10 +2,11 @@
     <string name="app_name">Truek</string>
 
 
-    <string name="login">Login</string>
+
 
 
     <!-- Login screen -->
+    <string name="login">Login</string>
     <string name="login_message">Good to see you back!</string>
     <string name="user">User</string>
     <string name="password">Password</string>
