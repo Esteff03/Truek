@@ -6,21 +6,32 @@
         android:id="@+id/home"
         android:title="home"
         android:icon="@drawable/home"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         />
 
     <item
         android:id="@+id/heart"
         android:icon="@drawable/heart"
         android:title="heart"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         />
-<!--
+
+
     <item
-        android:id="@+id/user"
-        android:icon="@drawable/profile"
-        android:title="user"
-        app:showAsAction="always"
+        android:id="@+id/profile"
+        android:title="Profile"
+        app:showAsAction="never"
         />
--->
+
+    <item
+        android:id="@+id/signup"
+        android:title="SignUp"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/login"
+        android:title="Login"
+        app:showAsAction="never"
+        />
 </menu>
