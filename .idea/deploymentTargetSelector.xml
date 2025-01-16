@@ -8,6 +8,7 @@
       <SelectionState runConfigName="Splash">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+<<<<<<< HEAD
       <SelectionState runConfigName="MainActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
@@ -20,6 +21,8 @@
       <SelectionState runConfigName="Profile">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+=======
+>>>>>>> 5a66869e70a632fe8dd2e0cb22e61521bbdba7df
     </selectionStates>
   </component>
 </project>

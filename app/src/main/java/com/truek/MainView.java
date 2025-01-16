@@ -7,9 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-/**
- * @author sergio
- */
 public class MainView extends AppCompatActivity {
 
     @Override
