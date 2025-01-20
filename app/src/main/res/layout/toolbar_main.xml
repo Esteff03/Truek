@@ -71,8 +71,12 @@
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/logo"
         app:startIconDrawable="@drawable/toolbar_searchicon"
-        app:endIconDrawable="@drawable/toolbar_cameraicon"
+
         app:endIconMode="custom">
+
+        <!-- app:endIconDrawable="@drawable/toolbar_cameraicon"
+            en la parte de arriba es la camara dentro del search
+         -->
 
         <EditText
             android:id="@+id/editText"
