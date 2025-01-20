@@ -14,8 +14,34 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:src="@drawable/login_bubble2"
-        android:translationX="-80dp"
-        android:translationY="-140dp"
+        android:translationX="-150dp"
+        android:translationY="-190dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bubble2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/register_bubble"
+        android:translationX="130dp"
+        android:translationY="-140dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create \nAccount"
+        android:textSize="50sp"
+        android:translationX="40dp"
+        android:translationY="-150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bubble"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
