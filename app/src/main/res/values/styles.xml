@@ -75,5 +75,14 @@
         <item name="android:backgroundTint">@color/gray_search_input</item>
     </style>
 
+    <!--ESTILO EDIT TEXT DEL activity_create_account-->
+    <style name="createacount_edittext_style">
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:translationY">-120dp</item>
+    </style>
+
 
 </resources>
