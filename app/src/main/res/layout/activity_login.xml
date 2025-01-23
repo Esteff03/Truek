@@ -31,6 +31,9 @@
         android:translationY="-140dp"
         />
 
+
+
+
     <ImageView
         android:id="@+id/bubble1"
         android:layout_width="wrap_content"
@@ -129,6 +132,8 @@
             />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <Button
         android:id="@+id/button1"
