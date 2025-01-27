@@ -10,5 +10,4 @@
     <include layout="@layout/toolbar_main" />
 
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
