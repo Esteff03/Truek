@@ -31,9 +31,6 @@
         android:translationY="-140dp"
         />
 
-
-
-
     <ImageView
         android:id="@+id/bubble1"
         android:layout_width="wrap_content"
@@ -119,7 +116,6 @@
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/field1"
         app:passwordToggleEnabled="true"
-        android:layout_marginTop="5dp"
         style="@style/input_login2">
 
         <EditText
@@ -130,8 +126,6 @@
             android:inputType="textPassword"
             android:background="@drawable/main_rounded_edittext" />
     </com.google.android.material.textfield.TextInputLayout>
-
-
 
     <Button
         android:id="@+id/button1"

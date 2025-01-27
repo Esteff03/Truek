@@ -1,22 +1,16 @@
 <resources>
     <string name="app_name">Truek</string>
 
+
+    <string name="login">Login</string>
+
+
     <!-- Login screen -->
-    <string name="login">Iniciar sesión</string>
-    <string name="login_message">¡Que bueno verte de vuelta!</string>
-    <string name="user">Usuario</string>
-    <string name="password">Contraseña</string>
-    <string name="next">Siguiente</string>
-    <string name="cancel">Cancelar</string>
+    <string name="login_message">Good to see you back!</string>
+    <string name="user">User</string>
+    <string name="password">Password</string>
+    <string name="next">Next</string>
+    <string name="cancel">Cancel</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment </string>
-
-
-    <!-- Register screen -->
-    <string name="register">Crear \ncuenta</string>
-
-    <!-- Main View -->
-    <string name="lets_get_started">Comencemos</string>
-    <string name="already_have_account">Ya tienes una cuenta?</string>
-    <string name="or_continue_with">O continua con</string>"
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
