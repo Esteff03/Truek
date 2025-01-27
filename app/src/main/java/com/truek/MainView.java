@@ -20,6 +20,7 @@ public class MainView extends AppCompatActivity {
 
         View.OnClickListener loginClickListener = v -> {
             loadFragment();
+
         };
 
         // Asignar mismo listener TextView e ImageView
