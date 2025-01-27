@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Truek</string>
+    <string name="login">Login</string>
+    <string name="login_message">Good to see you back!</string>
+    <string name="user">Username</string>
+    <string name="password">Password</string>
+    <string name="next">Next</string>
+    <string name="cancel">Cancel</string>
+</resources>
