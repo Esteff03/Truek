@@ -96,13 +96,13 @@
             <Button
                 android:id="@+id/button1"
                 android:text="Categorías"
-                android:layout_marginEnd="6dp"
+                android:layout_marginStart="8dp"
                 style="@style/toolbar_button_style" />
 
             <Button
                 android:id="@+id/button2"
                 android:text="Favoritos"
-                android:layout_marginStart="6dp"
+                android:translationX="2dp"
                 style="@style/toolbar_button_style"/>
 
         </LinearLayout>

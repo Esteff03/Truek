@@ -41,6 +41,7 @@
         <item name="android:radius">50dp</item>
     </style>
 
+    <!--toolbar style buttons-->
     <style name="toolbar_button_style">
         <item name="android:layout_width">135dp</item>
         <item name="android:layout_height">45dp</item>
