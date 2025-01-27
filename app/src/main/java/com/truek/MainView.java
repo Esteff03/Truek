@@ -34,6 +34,7 @@ public class MainView extends AppCompatActivity {
         replaceFragment(fragmentLogin);
     }
 
+
     private void loadCreateAccountFragment() {
         Fragment_CreateAccount fragmentCreateAccount = new Fragment_CreateAccount();
         replaceFragment(fragmentCreateAccount);
