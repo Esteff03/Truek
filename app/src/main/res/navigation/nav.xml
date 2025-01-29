@@ -1,0 +1,25 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="fragments.FragmentHouse"
+        tools:layout="@layout/fragment_house" />
+    <fragment
+        android:id="@+id/heart"
+        android:name="fragments.FragmentHeart"
+        tools:layout="@layout/fragment_heart" />
+    <fragment
+        android:id="@+id/share"
+        android:name="fragments.FragmentShare"
+        tools:layout="@layout/fragment_share" />
+    <fragment
+        android:id="@+id/video"
+        android:name="fragments.FragmentVideo"
+        tools:layout="@layout/fragment_video" />
+
+
+</navigation>

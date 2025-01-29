@@ -1,23 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/bottom_houseicon" />
+        android:id="@+id/home"
+        android:icon="@drawable/bottom_houseicon"
+        android:title="Home"/>
     <item
-        android:id="@+id/navigation_heart"
-        android:icon="@drawable/bottom_hearticon" />
+        android:id="@+id/heart"
+        android:icon="@drawable/bottom_hearticon"
+        android:title="Heart"/>
     <item
-        android:id="@+id/navigation_share"
-        android:icon="@drawable/bottom_shareicon" />
+        android:id="@+id/share"
+        android:icon="@drawable/bottom_shareicon"
+        android:title="Share"/>
     <item
-        android:id="@+id/navigation_video"
+        android:id="@+id/video"
         android:icon="@drawable/bottom_videoicon"
-        />
+        android:title="Video"/>
     <item
-        android:id="@+id/navigation_profile"
+        android:id="@+id/profile"
         android:icon="@drawable/bottom_profileicon"
-        android:title="TODO" />
+        android:title="Profile"/>
 
 </menu>
