@@ -53,6 +53,10 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 ![image](https://github.com/user-attachments/assets/6f0e9065-7cea-44ec-a313-1db72baa34e9)
 
 
+![image](https://github.com/user-attachments/assets/a3096595-acac-4b45-bdb4-fd4910a0ebe8)
+
+
+
 ![Screen_recording_20250129_212156-ezgif com-resize](https://github.com/user-attachments/assets/3279f8b9-4ca8-4d8a-ae1e-88ace05fc054)
 
 
