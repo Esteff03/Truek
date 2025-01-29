@@ -43,9 +43,12 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 [Figma](https://www.figma.com/design/g5gElOIdZWXgq2P8IEJk5P/Truek?node-id=0-1&p=f&t=Wh73LkqWBYenrGI8-0)
 
 
-[Últimas actualizaciones]
+[Últimas actualizaciones 30-01-2025]
 
 *Profile*
+
+
+https://github.com/user-attachments/assets/84b9be28-1b22-4c97-924b-228c6335e47f
 
 
 
