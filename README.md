@@ -46,9 +46,12 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 [Últimas actualizaciones 30-01-2025]
 
 *Profile*
+Image-profile:
+![image](https://github.com/user-attachments/assets/3d46dea9-761e-454c-a0b7-a122b0104adc)
 
-![Image-profile](https://github.com/user-attachments/assets/93e950bb-d50c-4071-ad1f-abef938977b1)
 
+
+Gif-profile:
 
 ![Profile-ezgif com-crop (1)](https://github.com/user-attachments/assets/0fc81f86-1e47-435e-99fa-b932927a355f)
 
