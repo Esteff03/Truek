@@ -1,70 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <!-- ESTILO PARA BORDES REDONDEADOS -->
-<style name="RoundedBox">
-    <item name="android:background">@drawable/main_bg_roundedbox</item>
-    <item name="android:padding">16dp</item> <!-- Padding interno -->
-</style>
+    <style name="RoundedBox">
+        <item name="android:background">@drawable/main_bg_roundedbox</item>
+        <item name="android:padding">16dp</item> <!-- Padding interno -->
+    </style>
 
-<!-- ESTILO PARA BOTONES CON BORDES REDONDEADOS -->
-<style name="RoundedButton" parent="Widget.AppCompat.Button">
-    <item name="android:backgroundTint">@color/purple_500</item>
-    <item name="android:textColor">@android:color/white</item>
-    <item name="android:radius">6dp</item>
-    <item name="android:textSize">16sp</item>
-    <item name="android:textAllCaps">false</item>
-</style>
+    <!-- ESTILO PARA BOTONES CON BORDES REDONDEADOS -->
+    <style name="RoundedButton" parent="Widget.AppCompat.Button">
+        <item name="android:backgroundTint">@color/purple_500</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:radius">6dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
 
-<!-- ESTILO PARA CONVERTIR LAS IMAGENES CIRCULARES -->
-<style name="CircularImage">
-    <item name="cornerFamily">rounded</item>
-    <item name="cornerSize">50%</item>  <!-- Esto hace la imagen circular -->
-</style>
+    <!-- ESTILO PARA CONVERTIR LAS IMAGENES CIRCULARES -->
+    <style name="CircularImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>  <!-- Esto hace la imagen circular -->
+    </style>
 
-<!--ESTILO CAMPO DE TEXTO "USUAR" DEL LOGIN-->
-<style name="input_login">
-    <item name="android:layout_width">0dp</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:layout_marginTop">0dp</item>
-    <item name="android:layout_marginLeft">20dp</item>
-    <item name="android:layout_marginRight">20dp</item>
-    <item name="android:translationY">-70dp</item>
-</style>
+    <!--ESTILO CAMPO DE TEXTO "USUAR" DEL LOGIN-->
+    <style name="input_login">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:translationY">-70dp</item>
+    </style>
 
-<!--ESTILO CAMPO DE TEXTO "PASSWORD DEL LOGIN-->
-<style name="input_login2">
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:layout_width">0dp</item>
-    <item name="android:translationY">-65dp</item>
-    <item name="android:layout_marginLeft">20dp</item>
-    <item name="android:layout_marginRight">20dp</item>
-    <item name="android:radius">50dp</item>
-</style>
+    <!--ESTILO CAMPO DE TEXTO "PASSWORD DEL LOGIN-->
+    <style name="input_login2">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:translationY">-65dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:radius">50dp</item>
+    </style>
 
-<!--ESTILO BOTOM NEXT DEL activity_login-->
-<style name="button_style_next">
-    <item name="android:layout_height">70dp</item>
-    <item name="android:layout_width">0dp</item>
-    <item name="android:layout_marginLeft">20dp</item>
-    <item name="android:layout_marginRight">20dp</item>
-    <item name="android:alpha">0.7</item>
-    <item name="android:translationY">-50dp</item>
-    <item name="android:textSize">20sp</item>
-</style>
+    <!--toolbar style buttons-->
+    <style name="toolbar_button_style">
+        <item name="android:layout_width">135dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:radius">76dp</item>
+        <item name="android:color">@color/black</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:backgroundTint">@color/gray_search_input</item>
+    </style>
 
-<!--ESTILO BOTON CANCELAR DEL activity_login-->
-<style name="button_style_cancel">
-    <item name="android:layout_height">70dp</item>
-    <item name="android:layout_width">0dp</item>
-    <item name="android:layout_marginLeft">20dp</item>
-    <item name="android:layout_marginRight">20dp</item>
-    <item name="android:translationY">-45dp</item>
-    <item name="android:alpha">0.7</item>
-    <item name="android:background">@android:color/transparent</item>
-    <item name="android:textColor">@color/black</item>
-    <item name="android:textSize">14sp</item>
-    <item name="android:padding">10dp</item>
-</style>
+    <!--ESTILO BOTOM NEXT DEL activity_login-->
+    <style name="button_style_next">
+        <item name="android:layout_height">70dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:alpha">0.7</item>
+        <item name="android:translationY">-50dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!--ESTILO BOTON CANCELAR DEL activity_login-->
+    <style name="button_style_cancel">
+        <item name="android:layout_height">70dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:translationY">-45dp</item>
+        <item name="android:alpha">0.7</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+
+    <!--ESTILO CAMPO DE TEXTO "USUAR" DEL CREATE ACCOUNT-->
+    <style name="createacount_edittext_User_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:translationY">-140dp</item>
+    </style>
+
+    <style name="createacount_edittext_Pass_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:translationY">-140dp</item>
+    </style>
 
 
 </resources>
