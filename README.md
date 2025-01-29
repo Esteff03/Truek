@@ -47,12 +47,19 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 *Splash*
 
+![image](https://github.com/user-attachments/assets/fe36a831-5744-4783-b0a8-a6b3f70678cb)
+
 
 ![image](https://github.com/user-attachments/assets/6f0e9065-7cea-44ec-a313-1db72baa34e9)
 
 
+![Screen_recording_20250129_212156-ezgif com-resize](https://github.com/user-attachments/assets/3279f8b9-4ca8-4d8a-ae1e-88ace05fc054)
+
+
 *Profile*
 Image-profile:
+
+
 ![image](https://github.com/user-attachments/assets/3d46dea9-761e-454c-a0b7-a122b0104adc)
 
 
