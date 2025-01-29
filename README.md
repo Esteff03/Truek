@@ -2,6 +2,12 @@
 
 Aplicación móvil para intercambio de productos o servicios, sin la necesidad de utilizar dinero, ya que se pueden realizar trueques. 
 
+![Screen_recording_20250129_213939-ezgif com-resize](https://github.com/user-attachments/assets/bbfdb1c2-75d3-4a9b-a46f-8f4c6e6102f2)
+
+
+
+
+
 [Trello](https://trello.com/invite/b/674da37a74943d6ec98d884d/ATTI4506a54cb7a89d297eabd50201a6eaccCEE87838/truek)
 
 [Figma](https://www.figma.com/design/g5gElOIdZWXgq2P8IEJk5P/Truek?node-id=0-1&p=f&t=Wh73LkqWBYenrGI8-0)
@@ -45,6 +51,7 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 [Últimas actualizaciones 30-01-2025]
 
+
 *Splash*
 
 ![image](https://github.com/user-attachments/assets/fe36a831-5744-4783-b0a8-a6b3f70678cb)
@@ -58,6 +65,7 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 
 ![Screen_recording_20250129_212156-ezgif com-resize](https://github.com/user-attachments/assets/3279f8b9-4ca8-4d8a-ae1e-88ace05fc054)
+
 
 
 *Profile*
