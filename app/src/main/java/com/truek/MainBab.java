@@ -47,7 +47,7 @@ public class MainBab extends AppCompatActivity {
             });
 
             // click event en el Bottom bar menu item
-            bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            /*bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     if (item.getItemId() == R.id.home) {
@@ -60,6 +60,6 @@ public class MainBab extends AppCompatActivity {
                         return false; // El sistema manejará la acción predeterminada
                     }
                 }
-            });
+            });*/
         }
 }
