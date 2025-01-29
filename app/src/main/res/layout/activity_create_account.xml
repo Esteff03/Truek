@@ -27,7 +27,7 @@
         android:translationX="60dp"
         android:translationY="-60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintqTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <!-- Logo -->
