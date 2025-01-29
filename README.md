@@ -53,8 +53,9 @@ Image-profile:
 
 Gif-profile:
 
-![Profile-ezgif com-crop (1)](https://github.com/user-attachments/assets/0fc81f86-1e47-435e-99fa-b932927a355f)
 
+
+![Profile-ezgif com-crop (2)](https://github.com/user-attachments/assets/7118111f-1481-4e15-b72e-ba17491542a0)
 
 
 Roles de desarrollo:  
