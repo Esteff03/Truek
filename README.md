@@ -45,6 +45,12 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 [Últimas actualizaciones 30-01-2025]
 
+*Splash*
+
+
+![image](https://github.com/user-attachments/assets/6f0e9065-7cea-44ec-a313-1db72baa34e9)
+
+
 *Profile*
 Image-profile:
 ![image](https://github.com/user-attachments/assets/3d46dea9-761e-454c-a0b7-a122b0104adc)
