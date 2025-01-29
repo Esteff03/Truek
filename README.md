@@ -48,7 +48,8 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 *Profile*
 
 
-https://github.com/user-attachments/assets/84b9be28-1b22-4c97-924b-228c6335e47f
+![Profile-ezgif com-crop](https://github.com/user-attachments/assets/3fe8540d-57f4-4d72-8c55-73452819ae69)
+
 
 
 
