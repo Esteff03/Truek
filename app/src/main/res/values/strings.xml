@@ -7,4 +7,10 @@
     <string name="next">Siguiente</string>
     <string name="cancel">Cancelar</string>
 
+
+    <!-- Main View -->
+    <string name="lets_get_started">Comencemos</string>
+
+
+
 </resources>
