@@ -3,35 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/home"
-        android:title="home"
-        android:icon="@drawable/home"
-        app:showAsAction="ifRoom"
-        />
-
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/bottom_houseicon" />
     <item
-        android:id="@+id/heart"
-        android:icon="@drawable/heart"
-        android:title="heart"
-        app:showAsAction="ifRoom"
-        />
-
-
+        android:id="@+id/navigation_heart"
+        android:icon="@drawable/bottom_hearticon" />
     <item
-        android:id="@+id/profile"
-        android:title="Profile"
-        app:showAsAction="never"
-        />
-
+        android:id="@+id/navigation_share"
+        android:icon="@drawable/bottom_shareicon" />
     <item
-        android:id="@+id/signup"
-        android:title="SignUp"
-        app:showAsAction="never"
+        android:id="@+id/navigation_video"
+        android:icon="@drawable/bottom_videoicon"
         />
-
     <item
-        android:id="@+id/login"
-        android:title="Login"
-        app:showAsAction="never"
-        />
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/bottom_profileicon"/>
+
 </menu>
