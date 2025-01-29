@@ -33,7 +33,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="taimoor Sikano"
+            android:text="Inexperienced user"
             android:textSize="14sp"
             android:layout_toRightOf="@+id/profile_image"
             android:layout_below="@id/full_name"
@@ -68,10 +68,10 @@
                     android:src="@drawable/payment_icon"
                     android:layout_centerHorizontal="true"/>
                 <TextView
-                    android:id="@+id/payment_label"
+                    android:id="@+id/payment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$123"
+                    android:text="$15"
                     android:textSize="20sp"
                     android:layout_centerInParent="true"
                     android:includeFontPadding="false"/>
@@ -79,9 +79,9 @@
                     android:id="@+id/payment_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Balance"
+                    android:text="Wallet"
                     android:textSize="14sp"
-                    android:layout_below="@id/payment_label"
+                    android:layout_below="@id/payment"
                     android:layout_centerHorizontal="true"
                     android:includeFontPadding="false"/>
 
@@ -109,10 +109,10 @@
                     android:src="@drawable/payment_icon"
                     android:layout_centerHorizontal="true"/>
                 <TextView
-                    android:id="@+id/booking_label"
+                    android:id="@+id/exchange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12"
+                    android:text="0"
                     android:textSize="20sp"
                     android:layout_centerInParent="true"
                     android:includeFontPadding="false"/>
@@ -120,9 +120,9 @@
                     android:id="@+id/booking_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Booking"
+                    android:text="Exchange"
                     android:textSize="14sp"
-                    android:layout_below="@id/booking_label"
+                    android:layout_below="@id/exchange"
                     android:layout_centerHorizontal="true"
                     android:includeFontPadding="false"/>
 
@@ -134,21 +134,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:hint="Full Name">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/usericon"
                 android:drawablePadding="10dp"
-                android:text="Taimoo Sikander"/>
+                android:text="Taimoo Sikander" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -156,15 +157,16 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="E-Mail"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:hint="E-Mail">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/email"
                 android:drawablePadding="10dp"
-                android:text="admin@gmail.com"/>
+                android:text="admin@gmail.com" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -172,15 +174,16 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone number"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:hint="Phone number">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/phone"
                 android:drawablePadding="10dp"
-                android:text="+34 655 55 55 55"/>
+                android:text="+34 655 55 55 55" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -188,26 +191,42 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:hint="Password">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/password"
                 android:drawablePadding="10dp"
-                android:text="aabbccc12345"/>
+                android:text="aabbccc12345" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/btnUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="#CCA9DD"
             android:text="Update"
-            android:background="#CCA9DD">
-        </Button>
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="#A9CCE3"
+            android:text="Save"
+            android:textColor="#FFFFFF" />
+
 
     </LinearLayout>
+
 
 </LinearLayout>
