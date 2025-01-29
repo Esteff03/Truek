@@ -3,8 +3,11 @@
     <string name="app_name">Truek</string>
     <string name="login">Login</string>
     <string name="login_message">Good to see you back!</string>
-    <string name="user">Username</string>
+    <string name="user">E-mail</string>
     <string name="password">Password</string>
     <string name="next">Next</string>
     <string name="cancel">Cancel</string>
+    <string name="btn_start">Let\'s get started</string>
+    <string name="btn_register">I already have an account</string>
+    <string name="string_continue">- OR Continue with -</string>
 </resources>

@@ -1,10 +1,16 @@
 <resources>
-    <string name="app_name">Truek</string>
-    <string name="login">Login</string>
-    <string name="login_message">Good to see you back!</string>
-    <string name="user">Usuario</string>
+    <string name="app_name" translatable="false">Truek</string>
+
+    <!--Strings del activiy_login-->
+    <string name="login">Iniciar Sesion</string>
+    <string name="login_message">¡Bienvenido de nuevo!</string>
+    <string name="user">Correo electrónico</string>
     <string name="password">Contraseña</string>
     <string name="next">Siguiente</string>
     <string name="cancel">Cancelar</string>
 
+    <!--Strings del activity_main_view-->
+    <string name="btn_start">Comenzar</string>
+    <string name="btn_register">Ya tengo una cuenta</string>
+    <string name="txt_continue">- O continuar con -</string>
 </resources>
