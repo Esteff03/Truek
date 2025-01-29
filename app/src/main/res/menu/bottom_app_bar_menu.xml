@@ -17,6 +17,7 @@
         />
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/bottom_profileicon"/>
+        android:icon="@drawable/bottom_profileicon"
+        android:title="TODO" />
 
 </menu>
