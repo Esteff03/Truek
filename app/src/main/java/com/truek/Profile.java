@@ -1,60 +1,101 @@
 package com.truek;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.textfield.TextInputEditText;
 
 public class Profile extends AppCompatActivity {
+    // Declarar las variables
+    private TextInputEditText emailEditText;
+    private TextInputEditText nameEditText;
+    private TextInputEditText tlEditText;
+    private TextInputEditText pwEditText;
+    private TextView fullname, payment, exchange;
+    String name, email, tl, pw;
 
-    Button button;
-    ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
 
-        button = findViewById(R.id.changeImageButton);
-        img = findViewById(R.id.imageProfile);
+        // Inicializar los campos de texto
+        nameEditText = findViewById(R.id.name);
+        emailEditText = findViewById(R.id.email);
+        tlEditText = findViewById(R.id.tl);
+        pwEditText = findViewById(R.id.pw);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                abrirCamara();
+        fullname = findViewById(R.id.full_name);
+
+        // Inicializar los TextView de monedero
+        payment = findViewById(R.id.payment);
+        exchange = findViewById(R.id.exchange);
+
+
+
+        // Botón para actualizar y mostrar datos
+        Button showEmailButton = findViewById(R.id.btnUpdate);
+        showEmailButton.setOnClickListener(v -> {
+            // Recoge el texto ingresado
+            name = nameEditText.getText().toString();
+            email = emailEditText.getText().toString();
+            tl = tlEditText.getText().toString();
+            pw = pwEditText.getText().toString();
+
+            // Muestra la info en un Toast (puedes mostrar más información si deseas)
+            Toast.makeText(Profile.this, "Correo: " + email + "\nNombre: " + name, Toast.LENGTH_SHORT).show();
+        });
+
+        // Botón para modificar la información
+        Button modifyButton = findViewById(R.id.btnSave);  // Asegúrate de usar el ID correcto
+        modifyButton.setOnClickListener(v -> {
+            // Validar si los campos no están vacíos antes de actualizar
+            if (!name.isEmpty()) {
+                fullname.setText(name);
             }
+            if (!email.isEmpty()) {
+                emailEditText.setText(email);
+            }
+            if (!tl.isEmpty()) {
+                tlEditText.setText(tl);
+            }
+            if (!pw.isEmpty()) {
+                pwEditText.setText(pw);
+            }
+
+            // Mensaje para confirmar que la información fue modificada
+            Toast.makeText(Profile.this, "Información actualizada.", Toast.LENGTH_SHORT).show();
         });
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-    }
 
 
-    private void abrirCamara(){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(intent.resolveActivity(getPackageManager()) != null){
-            startActivityForResult(intent, 1);
-        }
-    }
+       /* // Botón para modificar el monedero
+        Button modifyComprar = findViewById(R.id.btnComprar);  // Botón de compra
+        modifyComprar.setOnClickListener(v -> {
+            int contador = Integer.parseInt(exchange.getText().toString());
+            int valor = 7; // Valor del producto que queremos comprar
+            final int AUMENTO_MONEDERO = 15; // Cada vez que haga un intercambio, aumenta 15 euros
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imgBitmap = (Bitmap) extras.get("data");
-            img.setImageBitmap(imgBitmap);
-        }
+            // Actualiza el valor del monedero después de la compra
+            int saldoActual = Integer.parseInt(payment.getText().toString());
+            payment.setText(String.valueOf(saldoActual - valor)); // Resta el valor del producto del monedero
+            contador++;
+
+            if (contador > 0) {
+                // Actualiza los intercambios realizados y aumenta el monedero
+                exchange.setText(String.valueOf(contador));
+                payment.setText(String.valueOf(Integer.parseInt(payment.getText().toString()) + AUMENTO_MONEDERO));
+            } else {
+                // Si no hay intercambios, muestra 0
+                exchange.setText("0");
+            }
+
+            // Muestra un Toast
+            Toast.makeText(Profile.this, "Compra realizada", Toast.LENGTH_SHORT).show();
+        });*/
     }
 }
