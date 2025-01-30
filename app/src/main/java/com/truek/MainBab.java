@@ -16,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MainBab extends AppCompatActivity {
+public class MainBab extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
