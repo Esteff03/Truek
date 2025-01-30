@@ -118,12 +118,16 @@ Button modifyComprar = findViewById(R.id.btnComprar);  // Botón de compra
 
 *Main*
 
+
 ![image](https://github.com/user-attachments/assets/89c3ad47-84d6-4955-b199-2fa20674d6d5)
 
 
 
 *Menú AppBar*
+
+
 ![image](https://github.com/user-attachments/assets/f3719354-b767-45ca-8e0e-ec29b437b5c1)
+
 
 
 Roles de desarrollo:  
