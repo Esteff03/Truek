@@ -1,8 +1,6 @@
 package com.truek;
 
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,12 +9,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import java.util.Locale;
 
-public class MainView extends AppCompatActivity {
+public class MainView extends BaseActivity { // Hereda de BaseActivity
 
     private ImageView flagIcon;
 
@@ -54,64 +50,43 @@ public class MainView extends AppCompatActivity {
         popupMenu.getMenuInflater().inflate(R.menu.language_menu, popupMenu.getMenu());
 
         popupMenu.setOnMenuItemClickListener(item -> {
+            String langCode = "";
+            String flagResource = "";
+
             if (item.getItemId() == R.id.language_spanish) {
                 Log.d("LanguageChange", "Spanish selected");
-                updateFlagIcon("flag_ic_spain");
-                setLocale("es");
-                return true;
+                langCode = "es";
+                flagResource = "flag_ic_spain";
             } else if (item.getItemId() == R.id.language_english) {
                 Log.d("LanguageChange", "English selected");
-                updateFlagIcon("flag_ic_us");
-                setLocale("en");
-                return true;
-
+                langCode = "en";
+                flagResource = "flag_ic_us";
             } else if (item.getItemId() == R.id.language_french) {
                 Log.d("LanguageChange", "French selected");
-                updateFlagIcon("flag_ic_france");
-                setLocale("fr");
-                return true;
-            } else {
-                return false;
+                langCode = "fr";
+                flagResource = "flag_ic_france";
+            } else if (item.getItemId() == R.id.language_italian) {
+                Log.d("LanguageChange", "Italian selected");
+                langCode = "it";
+                flagResource = "flag_ic_italy";
             }
+
+            if (!langCode.isEmpty()) {
+                // Guardar el idioma seleccionado en SharedPreferences
+                SharedPreferences preferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("language", langCode);
+                editor.putString("flag", flagResource);
+                editor.apply();
+
+                setLocale(langCode);
+                updateFlagIcon(flagResource);
+                recreate(); // Recrear la actividad para aplicar el cambio de idioma
+            }
+            return true;
         });
 
         popupMenu.show();
-    }
-
-    // Método para cambiar el idioma
-    private void setLocale(String langCode) {
-        // Guardar el idioma seleccionado en SharedPreferences
-        SharedPreferences preferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("language", langCode);
-
-        // Guardar la bandera correspondiente en SharedPreferences
-        String flagResource = "";
-        switch (langCode) {
-            case "es":
-                flagResource = "flag_ic_spain";
-                break;
-            case "en":
-                flagResource = "flag_ic_us";
-                break;
-            case "fr":
-                flagResource = "flag_ic_france";
-                break;
-        }
-        editor.putString("flag", flagResource);
-        editor.apply();  // Guardar cambios
-
-        // Cambiar la configuración regional
-        Locale locale = new Locale(langCode);
-        Locale.setDefault(locale);
-
-        Configuration config = new Configuration();
-        config.setLocale(locale); //Uso del método recomendado en API 24+
-
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-
-        // Actualizar la bandera después de cambiar el idioma
-        updateFlagIcon(flagResource);
     }
 
     // Método para actualizar el icono de la bandera
