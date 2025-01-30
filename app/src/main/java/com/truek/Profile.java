@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-public class Profile extends AppCompatActivity {
+public class Profile extends BaseActivity {
     // Declarar las variables
     private TextInputEditText emailEditText;
     private TextInputEditText nameEditText;
