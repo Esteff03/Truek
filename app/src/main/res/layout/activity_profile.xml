@@ -18,6 +18,9 @@
             android:id="@+id/profile_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
+
+            android:src="@drawable/profile_images"
+
             android:layout_centerVertical="true"/>
         <TextView
             android:id="@+id/full_name"
@@ -64,6 +67,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:src="@drawable/profile_payment_icon"
                     android:layout_centerHorizontal="true"/>
                 <TextView
                     android:id="@+id/payment"
@@ -104,6 +108,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:src="@drawable/profile_payment_icon"
                     android:layout_centerHorizontal="true"/>
                 <TextView
                     android:id="@+id/exchange"
@@ -144,6 +149,8 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
+                android:drawableLeft="@drawable/profile_usericon"
                 android:drawablePadding="10dp"
                 android:text="Taimoo Sikander" />
 
@@ -160,6 +167,7 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/profile_email"
                 android:drawablePadding="10dp"
                 android:text="admin@gmail.com" />
 
@@ -176,6 +184,7 @@
                 android:id="@+id/tl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/profile_phone"
                 android:drawablePadding="10dp"
                 android:text="+34 655 55 55 55" />
 
@@ -192,6 +201,7 @@
                 android:id="@+id/pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/profile_password"
                 android:drawablePadding="10dp"
                 android:text="aabbccc12345" />
 

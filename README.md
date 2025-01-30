@@ -49,6 +49,7 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 [Figma](https://www.figma.com/design/g5gElOIdZWXgq2P8IEJk5P/Truek?node-id=0-1&p=f&t=Wh73LkqWBYenrGI8-0)
 
 
+
 [Últimas actualizaciones 30-01-2025]
 
 
@@ -127,6 +128,7 @@ Button modifyComprar = findViewById(R.id.btnComprar);  // Botón de compra
 
 
 ![toolbarnav](https://github.com/user-attachments/assets/c06befa0-417e-43ad-94c9-436fac257571)
+
 
 
 
