@@ -1,5 +1,6 @@
 package com.truek;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -7,8 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -34,12 +33,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupNavigation() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_bar);
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        if (navHostFragment != null) {
-            NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.getNavController());
-        }
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.heart) {
+                startActivity(new Intent(this, GuardadosActivity.class));
+                return true;
+            } else if (itemId == R.id.share) {
+                startActivity(new Intent(this, ShareActivity.class));
+                return true;
+            } else if (itemId == R.id.video) {
+                startActivity(new Intent(this, VideoActivity.class));
+                return true;
+            } else if (itemId == R.id.profile) {
+                startActivity(new Intent(this, Profile.class));
+                return true;
+            }
+
+            return false;
+        });
+
+
     }
-
-
 
 }
