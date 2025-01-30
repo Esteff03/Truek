@@ -44,9 +44,6 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 
 
-*Main*
-
-
 
 Roles de desarrollo:  
 
