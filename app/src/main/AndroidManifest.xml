@@ -23,6 +23,7 @@
             android:name=".VideoActivity"
             android:exported="false" />
 
+
         <activity
             android:name=".ShareActivity"
             android:exported="false" />
