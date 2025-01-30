@@ -10,4 +10,11 @@
     <color name="mint_green">#6CFFC1</color>
     <color name="aqua">#C0F5EF</color>
     <color name="white_login_input">#F8F8F8</color>
+    <color name="light_background">#F9F9F9</color>
+    <color name="purple">#C16DFF</color>
+    <color name="light_gray">#DADADA</color>
+    <color name="hint_color">#A9A9A9</color>
+    <color name="gray_search_input">#E3E3E3</color>
+    <color name="bottom_nav_color">#A004FF</color>
+
 </resources>

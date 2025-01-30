@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--PREFIJOS DE PAISES, INTEGREADOS EN CREATE_ACCOUNT,..-->
+<resources>
+    <string-array name="country_codes">
+        <item>🇬🇧 +44 (United Kingdom)</item>
+        <item>🇺🇸 +1 (United States)</item>
+        <item>🇨🇦 +1 (Canada)</item>
+        <item>🇮🇳 +91 (India)</item>
+        <item>🇦🇺 +61 (Australia)</item>
+        <item>🇫🇷 +33 (France)</item>
+        <item>🇩🇪 +49 (Germany)</item>
+        <item>🇪🇸 +34 (Spain)</item>
+        <item>🇮🇹 +39 (Italy)</item>
+        <item>🇯🇵 +81 (Japan)</item>
+    </string-array>
+</resources>

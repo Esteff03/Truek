@@ -2,15 +2,18 @@ package com.truek;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 
-public class LoginFragment extends Fragment {
+
+public class Fragment_CreateAccount extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,7 +45,7 @@ public class LoginFragment extends Fragment {
                 @Override
                 public void onAnimationEnd(Animation animation) {
 
-                    getFragmentManager().beginTransaction().remove(LoginFragment.this).commitAllowingStateLoss();
+                    getFragmentManager().beginTransaction().remove(Fragment_CreateAccount.this).commitAllowingStateLoss();
                     openSignup();
                 }
 

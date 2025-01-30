@@ -18,7 +18,9 @@
             android:id="@+id/profile_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
+
             android:src="@drawable/profile_images"
+
             android:layout_centerVertical="true"/>
         <TextView
             android:id="@+id/full_name"
@@ -147,6 +149,7 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:drawableLeft="@drawable/profile_usericon"
                 android:drawablePadding="10dp"
                 android:text="Taimoo Sikander" />
