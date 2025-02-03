@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "123659415733",
+    "project_id": "truek-96e24",
+    "storage_bucket": "truek-96e24.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123659415733:android:820c7efc030a1b1e72cefc",
+        "android_client_info": {
+          "package_name": "com.truek"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvGheXSdJUbznyKQO3P9OGESGfP3GRjgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
