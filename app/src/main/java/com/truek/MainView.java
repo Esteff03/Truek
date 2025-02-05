@@ -13,17 +13,29 @@ import android.widget.TextView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import fragments.Fragment_CreateAccount;
 import fragments.Fragment_Login;
 
 public class MainView extends BaseActivity { // Hereda de BaseActivity
 
     private ImageView flagIcon;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view);
+
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString("message", "Integracion de Firebase completa");
+        analytics.logEvent("InitScreen", bundle);
+
 
         Button btnStart = findViewById(R.id.btn_start);
         btnStart.setOnClickListener(v -> loadLoginFragment());

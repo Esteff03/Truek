@@ -30,6 +30,7 @@ public class Fragment_CreateAccount extends Fragment {
         Button cancelButton = view.findViewById(R.id.button2);
 
 
+
         nextButton.setOnClickListener(v -> openMainActivity());
 
         cancelButton.setOnClickListener(v -> {
