@@ -23,6 +23,8 @@ public class FragmentProfile extends Fragment {
     private TextView fullname, payment, exchange;
     String name, email, tl, pw;
 
+
+
     public FragmentProfile() {
         // Required empty public constructor
     }
@@ -39,6 +41,8 @@ public class FragmentProfile extends Fragment {
         // Inflar el diseño para este fragmento
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+
+
         // Inicializar las vistas
         emailEditText = view.findViewById(R.id.email);
         nameEditText = view.findViewById(R.id.name);
@@ -47,6 +51,8 @@ public class FragmentProfile extends Fragment {
         fullname = view.findViewById(R.id.full_name);
         payment = view.findViewById(R.id.payment);
         exchange = view.findViewById(R.id.exchange);
+
+
 
         // Botón para modificar la información
         Button modifyButton = view.findViewById(R.id.btnSave);  // Asegúrate de usar el ID correcto
