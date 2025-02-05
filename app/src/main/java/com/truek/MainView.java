@@ -1,8 +1,6 @@
 package com.truek;
 
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,10 +9,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import java.util.Locale;
+
+import fragments.Fragment_CreateAccount;
+import fragments.Fragment_Login;
 
 public class MainView extends BaseActivity { // Hereda de BaseActivity
 
