@@ -1,18 +1,18 @@
 package com.truek;
 
-import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
+import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends BaseActivity {
+import fragments.FragmentGuardado;
+import fragments.FragmentHome;
+import fragments.FragmentProfile;
+import fragments.FragmentShare;
+import fragments.FragmentVideo;
 
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,41 +20,37 @@ public class MainActivity extends BaseActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        setupNavigation();
-
-
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-    }
-
-    private void setupNavigation() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_bar);
+        loadFragment(new FragmentHome()); // Cargar HomeFragment por defecto
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
+            Fragment selectedFragment = null;
 
-            if (itemId == R.id.heart) {
-                startActivity(new Intent(this, GuardadosActivity.class));
-                return true;
-            } else if (itemId == R.id.share) {
-                startActivity(new Intent(this, ShareActivity.class));
-                return true;
-            } else if (itemId == R.id.video) {
-                startActivity(new Intent(this, VideoActivity.class));
-                return true;
-            } else if (itemId == R.id.profile) {
-                startActivity(new Intent(this, Profile.class));
+            if (item.getItemId() == R.id.home) {
+                selectedFragment = new FragmentHome();
+            } else if (item.getItemId() == R.id.heart) {
+                selectedFragment = new FragmentGuardado();
+            } else if (item.getItemId() == R.id.share) {
+                selectedFragment = new FragmentShare();
+            } else if (item.getItemId() == R.id.video) {
+                selectedFragment = new FragmentVideo();
+            } else if (item.getItemId() == R.id.profile) {
+                selectedFragment = new FragmentProfile();
+            }
+
+            if (selectedFragment != null) {
+                loadFragment(selectedFragment);
                 return true;
             }
 
             return false;
         });
-
-
     }
 
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
+    }
 }

@@ -1,4 +1,4 @@
-package com.truek;
+package fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+
+import com.truek.MainActivity;
+import com.truek.MainView;
+import com.truek.R;
 
 
 public class Fragment_CreateAccount extends Fragment {
