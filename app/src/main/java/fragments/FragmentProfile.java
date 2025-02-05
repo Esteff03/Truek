@@ -1,17 +1,20 @@
-package com.truek;
+package fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.truek.R;
 
-public class Profile extends BaseActivity {
+public class FragmentProfile extends Fragment {
     // Declarar las variables
     private TextInputEditText emailEditText;
     private TextInputEditText nameEditText;
@@ -20,15 +23,33 @@ public class Profile extends BaseActivity {
     private TextView fullname, payment, exchange;
     String name, email, tl, pw;
 
+    public FragmentProfile() {
+        // Required empty public constructor
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        // Aquí puedes agregar código de inicialización si es necesario.
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflar el diseño para este fragmento
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        // Inicializar las vistas
+        emailEditText = view.findViewById(R.id.email);
+        nameEditText = view.findViewById(R.id.name);
+        tlEditText = view.findViewById(R.id.tl);
+        pwEditText = view.findViewById(R.id.pw);
+        fullname = view.findViewById(R.id.full_name);
+        payment = view.findViewById(R.id.payment);
+        exchange = view.findViewById(R.id.exchange);
 
         // Botón para modificar la información
-        Button modifyButton = findViewById(R.id.btnSave);  // Asegúrate de usar el ID correcto
+        Button modifyButton = view.findViewById(R.id.btnSave);  // Asegúrate de usar el ID correcto
         modifyButton.setOnClickListener(v -> {
             // Validar si los campos no están vacíos antes de actualizar
             if (!name.isEmpty()) {
@@ -45,20 +66,15 @@ public class Profile extends BaseActivity {
             }
 
             // Mensaje para confirmar que la información fue modificada
-            Toast.makeText(Profile.this, "Información actualizada.", Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(getActivity(), "Información actualizada.", Toast.LENGTH_SHORT).show();
 
             // Establece el ítem seleccionado en el BottomNavigationView
-            BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_bar);
+            BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_nav_bar);
             bottomNavigationView.setSelectedItemId(R.id.profile);
-
-
         });
 
-
-
-       /* // Botón para modificar el monedero
-        Button modifyComprar = findViewById(R.id.btnComprar);  // Botón de compra
+        /* // Botón para modificar el monedero
+        Button modifyComprar = view.findViewById(R.id.btnComprar);  // Botón de compra
         modifyComprar.setOnClickListener(v -> {
             int contador = Integer.parseInt(exchange.getText().toString());
             int valor = 7; // Valor del producto que queremos comprar
@@ -79,11 +95,9 @@ public class Profile extends BaseActivity {
             }
 
             // Muestra un Toast
-            Toast.makeText(Profile.this, "Compra realizada", Toast.LENGTH_SHORT).show();
-        });*/
+            Toast.makeText(getActivity(), "Compra realizada", Toast.LENGTH_SHORT).show();
+        }); */
+
+        return view;
     }
-
-
-
-
 }
