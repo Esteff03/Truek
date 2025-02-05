@@ -1,6 +1,11 @@
 package com.truek;
 
 import android.os.Bundle;
+import android.view.View;
+import androidx.appcompat.widget.Toolbar;
+
+
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -14,6 +19,8 @@ import fragments.FragmentVideo;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Toolbar toolbar_main;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +28,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_bar);
-        loadFragment(new FragmentHome()); // Cargar HomeFragment por defecto
+
+        // Solo cargar el fragmento si la actividad se inicia por primera vez
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new FragmentHome())
+                    .commit();
+        }
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
@@ -45,12 +58,16 @@ public class MainActivity extends AppCompatActivity {
 
             return false;
         });
+
     }
 
     private void loadFragment(Fragment fragment) {
+        // Realiza una transacción de fragmento, reemplazando el fragmento actual por el nuevo
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
     }
+
+
 }
