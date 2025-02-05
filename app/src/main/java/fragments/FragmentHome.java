@@ -26,7 +26,7 @@ public class FragmentHome extends Fragment {
         // Obtener referencias a los elementos de la Toolbar
         ImageView logo = view.findViewById(R.id.logo);
         ImageView messageIcon = view.findViewById(R.id.message);
-        EditText searchField = view.findViewById(R.id.editText);
+        EditText searchField = view.findViewById(R.id.buscador);
         Button btnCategories = view.findViewById(R.id.button1);
         Button btnFavorites = view.findViewById(R.id.button2);
 
