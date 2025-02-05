@@ -18,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/> <!-- Reservar espacio para la barra de estado -->
 
+
     <!-- FrameLayout para fragmentos -->
     <FrameLayout
         android:id="@+id/fragment_container"
