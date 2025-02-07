@@ -1,26 +1,65 @@
 {
   "project_info": {
-    "project_number": "123659415733",
-    "project_id": "truek-96e24",
-    "storage_bucket": "truek-96e24.firebasestorage.app"
+    "project_number": "126452824583",
+    "project_id": "truek-90a1f",
+    "storage_bucket": "truek-90a1f.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:123659415733:android:820c7efc030a1b1e72cefc",
+        "mobilesdk_app_id": "1:126452824583:android:2650e4c6f4e1a1ef0048a2",
         "android_client_info": {
-          "package_name": "com.truek"
+          "package_name": "com.ben.climatecrash"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "126452824583-7voauj0am1g4rpuhb655qsv8gotbql53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyDvGheXSdJUbznyKQO3P9OGESGfP3GRjgY"
+          "current_key": "AIzaSyAQ52SFUIQUNnIC8PUWkX7PrS8Sz_46dok"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126452824583-7voauj0am1g4rpuhb655qsv8gotbql53.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126452824583:android:78d6cfd8ed3610380048a2",
+        "android_client_info": {
+          "package_name": "com.truek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126452824583-7voauj0am1g4rpuhb655qsv8gotbql53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ52SFUIQUNnIC8PUWkX7PrS8Sz_46dok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126452824583-7voauj0am1g4rpuhb655qsv8gotbql53.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
