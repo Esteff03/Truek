@@ -85,7 +85,7 @@
 
         <!-- Botón "Let's Get Started" -->
         <Button
-            android:id="@+id/btn_start"
+            android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/main_bg_roundedbox"
@@ -104,7 +104,7 @@
             android:layout_marginTop="16dp">
 
             <TextView
-                android:id="@+id/btn_register"
+                android:id="@+id/btn_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_register"
@@ -112,7 +112,7 @@
                 android:textColor="@android:color/black" />
 
             <ImageView
-                android:id="@+id/arrow_register"
+                android:id="@+id/arrow_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/viewmain_arrow_right"

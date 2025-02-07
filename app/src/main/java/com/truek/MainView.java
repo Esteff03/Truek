@@ -28,7 +28,7 @@ public class MainView extends BaseActivity { // Hereda de BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view);
 
-        // Obtain the FirebaseAnalytics instance.
+        // Obtén la instancia de FirebaseAnalytics.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
@@ -36,16 +36,16 @@ public class MainView extends BaseActivity { // Hereda de BaseActivity
         bundle.putString("message", "Integracion de Firebase completa");
         analytics.logEvent("InitScreen", bundle);
 
+        // *** btn_register ahora debe cargar el fragment de CreateAccount ***
+        Button btnRegister = findViewById(R.id.btn_register);
+        btnRegister.setOnClickListener(v -> loadCreateAccountFragment());
 
-        Button btnStart = findViewById(R.id.btn_start);
-        btnStart.setOnClickListener(v -> loadLoginFragment());
-
-        TextView btnRegister = findViewById(R.id.btn_register);
-        ImageView arrowRegister = findViewById(R.id.arrow_register);
-
-        View.OnClickListener goToCreateAccountListener = v -> loadCreateAccountFragment();
-        btnRegister.setOnClickListener(goToCreateAccountListener);
-        arrowRegister.setOnClickListener(goToCreateAccountListener);
+        // *** btn_login y arrow_login deben cargar el fragment de Login ***
+        TextView btnLogin = findViewById(R.id.btn_login);
+        ImageView arrowLogin = findViewById(R.id.arrow_login);
+        View.OnClickListener goToLoginListener = v -> loadLoginFragment();
+        btnLogin.setOnClickListener(goToLoginListener);
+        arrowLogin.setOnClickListener(goToLoginListener);
 
         // Selector de idioma
         LinearLayout languageSelector = findViewById(R.id.language_selector);
