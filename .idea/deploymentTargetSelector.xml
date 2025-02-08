@@ -2,10 +2,10 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="Categorys">
+      <SelectionState runConfigName="Profile">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="Profile">
+      <SelectionState runConfigName="UploadProduct">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
