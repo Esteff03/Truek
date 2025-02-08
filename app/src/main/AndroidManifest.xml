@@ -18,6 +18,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Truek"
         tools:targetApi="31">
+
+        <activity
+            android:name=".VideoActivity"
+            android:exported="false" />
+
+
+        <activity
+            android:name=".ShareActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GuardadosActivity"
+            android:exported="false" />
         <activity
             android:name=".UploadProduct"
             android:exported="true" />

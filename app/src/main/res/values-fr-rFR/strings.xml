@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Truek</string>
+    <string name="login">" Se connecter"</string>
+    <string name="login_message">Content de vous revoir !</string>
+    <string name="user">E-mail</string>
+    <string name="password">Mot de passe</string>
+    <string name="next">Suivant</string>
+    <string name="cancel">Annuler</string>
+    <string name="btn_start">Commençons</string>
+    <string name="btn_register">J\'ai déjà un compte</string>
+    <string name="string_continue">- Ou continuer avec -</string>
+</resources>
