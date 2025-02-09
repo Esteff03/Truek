@@ -11,10 +11,10 @@
       <SelectionState runConfigName="Profile">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="MainView">
+      <SelectionState runConfigName="MainActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="MainActivity">
+      <SelectionState runConfigName="CreateAccount">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
