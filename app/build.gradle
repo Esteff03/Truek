@@ -47,4 +47,9 @@ dependencies {
     //botton navigation
     implementation("androidx.navigation:navigation-fragment:2.6.0")
     implementation("androidx.navigation:navigation-ui:2.6.0")
+
+    //Card View
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+
 }
