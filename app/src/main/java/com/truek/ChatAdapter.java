@@ -10,26 +10,24 @@ import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
 
-    private List<String> messages;
+    private List<Message> messages;
 
     // Constructor
-    public ChatAdapter(List<String> messages) {
+    public ChatAdapter(List<Message> messages) {
         this.messages = messages;
     }
 
-    @NonNull
     @Override
-    public ChatViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Infla el layout para cada mensaje
+    public ChatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message, parent, false);
         return new ChatViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
-        // Asigna el texto del mensaje
-        String message = messages.get(position);
-        holder.messageTextView.setText(message);
+    public void onBindViewHolder(ChatViewHolder holder, int position) {
+        // Asegúrate de acceder correctamente a la lista
+        Message message = messages.get(position);
+        holder.messageText.setText(message.getText());
     }
 
     @Override
@@ -37,14 +35,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         return messages.size();
     }
 
-    // ViewHolder que mantiene la vista de cada mensaje
     public static class ChatViewHolder extends RecyclerView.ViewHolder {
+        TextView messageText;
 
-        TextView messageTextView;
-
-        public ChatViewHolder(@NonNull View itemView) {
+        public ChatViewHolder(View itemView) {
             super(itemView);
-            messageTextView = itemView.findViewById(R.id.messageTextView);
+            messageText = itemView.findViewById(R.id.messageText);
         }
     }
 }

@@ -45,6 +45,12 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.google.firebase:firebase-auth:22.1.1")
+    // Firebase Database
+    implementation ('com.google.firebase:firebase-database:20.0.5')
+
+    // Firebase Firestore (si deseas usar Firestore en lugar de Realtime Database)
+    implementation ('com.google.firebase:firebase-firestore:24.0.2')
+
 
     implementation ("com.google.android.material:material:1.7.0")
     implementation ('androidx.cardview:cardview:1.0.0')
