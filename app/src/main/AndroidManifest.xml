@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- Codigo para poder hacer fotos con la camara -->z
+    <!-- Codigo para poder hacer fotos con la camara -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -18,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Truek"
         tools:targetApi="31">
+        <activity
+            android:name=".Chat"
+            android:exported="true" />
+        <activity
+            android:name=".Favourites"
+            android:exported="true" />
         <activity
             android:name=".UploadProduct"
             android:exported="true" />

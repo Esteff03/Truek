@@ -11,10 +11,13 @@
       <SelectionState runConfigName="Profile">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="MainView">
+      <SelectionState runConfigName="MainActivity">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="MainActivity">
+      <SelectionState runConfigName="Favourites">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="Chat">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
