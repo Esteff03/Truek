@@ -21,6 +21,7 @@
 
     </LinearLayout>
 
+
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_productos"

@@ -73,6 +73,7 @@ public class FragmentHome extends Fragment {
         adaptadorProductos = new AdaptadorProducto(listaProductos);
         recyclerProductos.setAdapter(adaptadorProductos);
 
+
         return view;
     }
 }
