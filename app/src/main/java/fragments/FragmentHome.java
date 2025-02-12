@@ -69,6 +69,7 @@ public class FragmentHome extends Fragment {
         listaProductos.add(new Producto("Zapatillas", "$120.00", R.drawable.clothes));
         listaProductos.add(new Producto("Reloj de Lujo", "$999.00", R.drawable.clothes));
 
+
         // Asignar el adaptador
         adaptadorProductos = new AdaptadorProducto(listaProductos);
         recyclerProductos.setAdapter(adaptadorProductos);

@@ -9,7 +9,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -22,7 +21,6 @@
 
     </LinearLayout>
 
-
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_productos"
@@ -32,97 +30,5 @@
         android:padding="8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2" /> <!-- 2 columnas en cada fila -->
-=======
-        android:layout_height="wrap_content" />
-
-    <!-- Contenido con NestedScrollView -->
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:layout_marginTop="?attr/actionBarSize">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp">
-
-            <!-- Sección Lo Mejor -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lo mejor"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="16dp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_top_ventas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
-                tools:listitem="@layout/item_producto" />
-
-            <!-- Sección Electrónica -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Electrónica"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="16dp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_electronica"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
-                tools:listitem="@layout/item_producto" />
-
-            <!-- Sección TruekDuca -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TruekDuca"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="16dp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_educacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
-                tools:listitem="@layout/item_producto" />
-
-            <!-- Sección Moda -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Moda"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="16dp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_moda"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
-                tools:listitem="@layout/item_producto" />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
 
 </FrameLayout>
