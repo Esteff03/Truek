@@ -34,7 +34,8 @@
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
             android:layout_gravity="top|start"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:contentDescription="Abrir cámara" />
 
         <!-- Botón de Abrir Galería en la parte superior derecha -->
         <Button
@@ -47,7 +48,8 @@
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
             android:layout_gravity="top|end"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:contentDescription="Abrir galería" />
     </FrameLayout>
 
     <!-- Campo para Nombre del Producto -->
@@ -94,5 +96,6 @@
         android:textColor="@android:color/white"
         android:background="@android:color/holo_green_dark"
         android:padding="16dp"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp"
+        android:contentDescription="Subir producto" />
 </LinearLayout>
