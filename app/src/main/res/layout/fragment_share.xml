@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -5,10 +6,96 @@
     android:background="@color/colorFondo"
     tools:context="fragments.FragmentShare">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Share Fragment" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="@android:color/white">
 
+        <FrameLayout
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="24dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@drawable/rounded_image"
+                android:src="@drawable/upload_product"
+                android:elevation="8dp" />
+
+            <Button
+                android:id="@+id/cameraButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cámara"
+                android:textColor="@android:color/white"
+                android:background="@android:color/black"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="8dp"
+                android:layout_gravity="top|start"
+                android:layout_margin="8dp"
+                android:contentDescription="Abrir cámara" />
+
+            <Button
+                android:id="@+id/galleryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Galería"
+                android:textColor="@android:color/white"
+                android:background="@android:color/black"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="8dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="8dp"
+                android:contentDescription="Abrir galería" />
+        </FrameLayout>
+
+        <EditText
+            android:id="@+id/productName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del producto"
+            android:layout_marginTop="16dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/productPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Precio del producto"
+            android:layout_marginTop="8dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/productDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descripción del producto"
+            android:layout_marginTop="8dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:maxLines="5" />
+
+        <Button
+            android:id="@+id/uploadProductButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SUBIR PRODUCTO"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_green_dark"
+            android:padding="16dp"
+            android:layout_marginTop="24dp"
+            android:contentDescription="Subir producto" />
+    </LinearLayout>
 </FrameLayout>
