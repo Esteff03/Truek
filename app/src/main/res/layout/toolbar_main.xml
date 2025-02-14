@@ -25,7 +25,7 @@
         />
 
     <ImageView
-        android:id="@+id/logo"
+        android:id="@+id/ajustes"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="99dp"
@@ -70,7 +70,7 @@
         android:layout_marginEnd="40dp"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintTop_toBottomOf="@id/ajustes"
         app:startIconDrawable="@drawable/toolbar_searchicon"
 
         app:endIconMode="custom">
