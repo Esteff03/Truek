@@ -24,6 +24,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
+
     <!-- RecyclerView debajo del Toolbar -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recicle"
