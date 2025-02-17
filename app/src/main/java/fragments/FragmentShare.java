@@ -1,9 +1,12 @@
 package fragments;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
@@ -19,19 +22,29 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.truek.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
-import okhttp3.*;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class FragmentShare extends Fragment {
 
+    private static final int REQUEST_CODE_CAMERA = 100;
+    private static final int REQUEST_CODE_STORAGE = 101;
+
     private static final String SUPABASE_URL = "https://pgosafydlwskwtvnuokk.supabase.co";
-    private static final String SUPABASE_API_KEY = "TU_CLAVE_API";
+    private static final String SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnb3NhZnlkbHdza3d0dm51b2trIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczOTQzODIxNywiZXhwIjoyMDU1MDE0MjE3fQ.2kKFUfVEo9pXvHa4GfdRR20KoFKJEUa55r21AF_K1bE";
     private static final String BUCKET_NAME = "Imagenes_1";
 
     private ImageView imageView;
@@ -70,22 +83,59 @@ public class FragmentShare extends Fragment {
         Button uploadButton = view.findViewById(R.id.uploadProductButton);
 
         cameraButton.setOnClickListener(v -> {
-            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            cameraLauncher.launch(cameraIntent);
+            if (checkCameraPermissions()) {
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                cameraLauncher.launch(cameraIntent);
+            } else {
+                requestCameraPermission();
+            }
         });
 
         galleryButton.setOnClickListener(v -> {
-            Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            pickImageLauncher.launch(galleryIntent);
+            if (checkStoragePermissions()) {
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                pickImageLauncher.launch(galleryIntent);
+            } else {
+                requestStoragePermission();
+            }
         });
 
         uploadButton.setOnClickListener(v -> uploadImage());
+
         return view;
     }
 
+    private boolean checkCameraPermissions() {
+        return ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private boolean checkStoragePermissions() {
+        return ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestCameraPermission() {
+        ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.CAMERA}, REQUEST_CODE_CAMERA);
+    }
+
+    private void requestStoragePermission() {
+        ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_STORAGE);
+    }
+
     private Uri getImageUriFromBitmap(Bitmap bitmap) {
-        String path = MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, "title", null);
-        return Uri.parse(path);
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.DISPLAY_NAME, "image_" + System.currentTimeMillis() + ".jpg");
+        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
+        values.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES); // Guarda en el directorio de imágenes
+
+        Uri uri = getActivity().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+        try (OutputStream outputStream = getActivity().getContentResolver().openOutputStream(uri)) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream); // Guarda la imagen en el OutputStream
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return uri;
     }
 
     private void uploadImage() {
@@ -94,23 +144,26 @@ public class FragmentShare extends Fragment {
             return;
         }
 
-        try {
-            InputStream inputStream = getActivity().getContentResolver().openInputStream(imageUri);
-            byte[] bytes = new byte[inputStream.available()];
-            inputStream.read(bytes);
-            String base64Image = Base64.encodeToString(bytes, Base64.DEFAULT);
-            sendToSupabase(base64Image);
+        try (InputStream inputStream = getActivity().getContentResolver().openInputStream(imageUri)) {
+            if (inputStream != null) {
+                byte[] bytes = new byte[inputStream.available()];
+                inputStream.read(bytes);
+                sendToSupabase(bytes);  // Enviar directamente los bytes a Supabase
+            } else {
+                Toast.makeText(getActivity(), "No se pudo acceder a la imagen", Toast.LENGTH_SHORT).show();
+            }
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(getActivity(), "Error al leer la imagen", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void sendToSupabase(String base64Image) {
-        String filename = "imagen_" + System.currentTimeMillis() + ".jpg";
+    private void sendToSupabase(byte[] imageBytes) {
+        String filename = "imagen_" + System.currentTimeMillis() + ".jpg";  // Asumiendo que es JPG
         String url = SUPABASE_URL + "/storage/v1/object/" + BUCKET_NAME + "/" + filename;
 
-        RequestBody body = RequestBody.create(Base64.decode(base64Image, Base64.DEFAULT), MediaType.parse("image/jpeg"));
+        // Realiza la solicitud PUT a Supabase con el contenido de la imagen
+        RequestBody body = RequestBody.create(imageBytes, MediaType.parse("image/jpeg"));
 
         Request request = new Request.Builder()
                 .url(url)
@@ -127,11 +180,15 @@ public class FragmentShare extends Fragment {
                     String imageUrl = SUPABASE_URL + "/storage/v1/object/" + BUCKET_NAME + "/" + filename;
                     saveProductToDatabase(imageUrl);
                 } else {
-                    getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), "Error al subir imagen: " + response.message(), Toast.LENGTH_SHORT).show());
+                    getActivity().runOnUiThread(() -> {
+                        Toast.makeText(getActivity(), "Error al subir imagen: " + response.message(), Toast.LENGTH_SHORT).show();
+                    });
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show());
+                getActivity().runOnUiThread(() -> {
+                    Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
+                });
             }
         }).start();
     }
