@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,15 +15,15 @@ import java.util.List;
 public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.ViewHolder> {
 
     private List<Producto> listaProductos;
+    private OnFavoritoClickListener listener;
 
-    public AdaptadorProducto(List<Producto> listaProductos) {
-        this.listaProductos = listaProductos;
-        notifyDataSetChanged();
+    public interface OnFavoritoClickListener {
+        void onFavoritoClick(Producto producto);
     }
 
-    public void setListaProductos(List<Producto> nuevaLista) {
-        this.listaProductos = nuevaLista;
-        notifyDataSetChanged();
+    public AdaptadorProducto(List<Producto> listaProductos, OnFavoritoClickListener listener) {
+        this.listaProductos = listaProductos;
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,28 +35,53 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (listaProductos != null && !listaProductos.isEmpty()) {
-            Producto producto = listaProductos.get(position);
-            holder.nombreProducto.setText(producto.getNombre());
-            holder.precioProducto.setText(producto.getPrecio());
-            holder.imagenProducto.setImageResource(producto.getImagenResId());
-        }
+        Producto producto = listaProductos.get(position);
+        holder.bind(producto);
     }
 
     @Override
     public int getItemCount() {
-        return (listaProductos != null) ? listaProductos.size() : 0;
+        return listaProductos.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nombreProducto, precioProducto;
-        ImageView imagenProducto;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView nombreProducto;
+        private ImageView imagenProducto, iconoFavorito;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nombreProducto = itemView.findViewById(R.id.nombre_producto);
-            precioProducto = itemView.findViewById(R.id.precio_producto);
             imagenProducto = itemView.findViewById(R.id.imagen_producto);
+            iconoFavorito = itemView.findViewById(R.id.icono_favorito);
         }
+
+        public void bind(Producto producto) {
+            nombreProducto.setText(producto.getNombre());
+            imagenProducto.setImageResource(producto.getImagen());
+
+            // Mostrar el icono según el estado actual del producto
+            if (FavoritosRepository.getInstance().getFavoritos().contains(producto)) {
+                iconoFavorito.setImageResource(R.drawable.ic_heart);  // Producto marcado como favorito
+            } else {
+                iconoFavorito.setImageResource(R.drawable.ic_empty_heart);  // No es favorito
+            }
+
+
+            iconoFavorito.setOnClickListener(v -> {
+                // Manejar el toggle directamente en el adaptador
+                if (FavoritosRepository.getInstance().getFavoritos().contains(producto)) {
+                    FavoritosRepository.getInstance().removeFavorito(producto);
+                    iconoFavorito.setImageResource(R.drawable.ic_empty_heart);
+                    Toast.makeText(v.getContext(), producto.getNombre() + " eliminado de favoritos", Toast.LENGTH_SHORT).show();
+                } else {
+                    FavoritosRepository.getInstance().addFavorito(producto);
+                    iconoFavorito.setImageResource(R.drawable.ic_heart);
+                    Toast.makeText(v.getContext(), producto.getNombre() + " agregado a favoritos", Toast.LENGTH_SHORT).show();
+                }
+
+            });
+        }
+
+
     }
 }

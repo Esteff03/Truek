@@ -26,9 +26,7 @@
         <activity
             android:name=".Favourites"
             android:exported="true" />
-        <activity
-            android:name=".UploadProduct"
-            android:exported="true" />
+
         <activity
             android:name=".Categories"
             android:exported="true" />
