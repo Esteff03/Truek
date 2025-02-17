@@ -16,9 +16,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.truek.AdaptadorProducto;
+import com.truek.Categories;
 import com.truek.FavoritosRepository;
 import com.truek.Producto;
 import com.truek.R;
@@ -58,8 +61,10 @@ public class FragmentHome extends Fragment {
         messageIcon.setOnClickListener(v ->
                 Toast.makeText(getActivity(), "Abrir mensajes", Toast.LENGTH_SHORT).show());
 
-        btnCategories.setOnClickListener(v ->
-                Toast.makeText(getActivity(), "Abrir categorías", Toast.LENGTH_SHORT).show());
+        btnCategories.setOnClickListener(v ->{
+            Intent intent = new Intent(getActivity(), Categories.class);
+            startActivity(intent);
+        });
 
         btnFavorites.setOnClickListener(v -> {
             FragmentGuardado fragmentGuardado = new FragmentGuardado(); // O usa newInstance() si lo prefieres
@@ -67,6 +72,10 @@ public class FragmentHome extends Fragment {
                     .replace(R.id.fragment_container, fragmentGuardado)
                     .addToBackStack(null)
                     .commit();
+
+            BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottom_nav_bar);
+            bottomNav.setSelectedItemId(R.id.heart);
+
         });
 
 
