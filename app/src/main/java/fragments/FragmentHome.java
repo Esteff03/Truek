@@ -1,11 +1,9 @@
 package fragments;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -21,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.truek.AdaptadorProducto;
+import com.truek.FavoritosRepository;
 import com.truek.Producto;
 import com.truek.R;
 import com.truek.MainView;
@@ -32,6 +31,7 @@ public class FragmentHome extends Fragment {
     private RecyclerView recyclerProductos;
     private AdaptadorProducto adaptadorProductos;
     private List<Producto> listaProductos;
+    private List<Producto> productosFavoritos;  // Lista para productos favoritos
     private FirebaseAuth auth;
 
     public FragmentHome() {
@@ -43,6 +43,7 @@ public class FragmentHome extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         auth = FirebaseAuth.getInstance();
+        productosFavoritos = new ArrayList<>();  // Inicializar la lista de favoritos
 
         // Configuración de Toolbar
         ImageView ajustes = view.findViewById(R.id.ajustes);
@@ -60,8 +61,16 @@ public class FragmentHome extends Fragment {
         btnCategories.setOnClickListener(v ->
                 Toast.makeText(getActivity(), "Abrir categorías", Toast.LENGTH_SHORT).show());
 
-        btnFavorites.setOnClickListener(v ->
-                Toast.makeText(getActivity(), "Abrir favoritos", Toast.LENGTH_SHORT).show());
+        btnFavorites.setOnClickListener(v -> {
+            FragmentGuardado fragmentGuardado = new FragmentGuardado(); // O usa newInstance() si lo prefieres
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragmentGuardado)
+                    .addToBackStack(null)
+                    .commit();
+        });
+
+
+
 
         // Configurar RecyclerView con GridLayoutManager
         recyclerProductos = view.findViewById(R.id.recycler_productos);
@@ -70,18 +79,31 @@ public class FragmentHome extends Fragment {
 
         // Agregar datos de ejemplo
         listaProductos = new ArrayList<>();
-        listaProductos.add(new Producto("PlayStation 5", "$499.00", R.drawable.chip));
-        listaProductos.add(new Producto("Smartphone 5G", "$799.00", R.drawable.chip));
-        listaProductos.add(new Producto("Laptop Gaming", "$1299.00", R.drawable.chip));
-        listaProductos.add(new Producto("Curso UX", "$29.00", R.drawable.chip));
-        listaProductos.add(new Producto("Guitarra", "$250.00", R.drawable.chip));
-        listaProductos.add(new Producto("Libro de Diseño", "$45.00", R.drawable.chip));
-        listaProductos.add(new Producto("Chaqueta", "$60.00", R.drawable.clothes));
-        listaProductos.add(new Producto("Zapatillas", "$120.00", R.drawable.clothes));
-        listaProductos.add(new Producto("Reloj de Lujo", "$999.00", R.drawable.clothes));
+        listaProductos.add(new Producto("PlayStation 5", "$499.00", R.drawable.chip, ""));
+        listaProductos.add(new Producto("Smartphone 5G", "$799.00", R.drawable.chip, ""));
+        listaProductos.add(new Producto("Laptop Gaming", "$1299.00", R.drawable.chip, ""));
+        listaProductos.add(new Producto("Curso UX", "$29.00", R.drawable.chip, ""));
+        listaProductos.add(new Producto("Guitarra", "$250.00", R.drawable.chip, ""));
+        listaProductos.add(new Producto("Libro de Diseño", "$45.00", R.drawable.chip, ""));
+        listaProductos.add(new Producto("Chaqueta", "$60.00", R.drawable.clothes, ""));
+        listaProductos.add(new Producto("Zapatillas", "$120.00", R.drawable.clothes, ""));
+        listaProductos.add(new Producto("Reloj de Lujo", "$999.00", R.drawable.clothes, ""));
+
 
         // Asignar el adaptador
-        adaptadorProductos = new AdaptadorProducto(listaProductos);
+        adaptadorProductos = new AdaptadorProducto(listaProductos, new AdaptadorProducto.OnFavoritoClickListener() {
+            @Override
+            public void onFavoritoClick(Producto producto) {
+                if (FavoritosRepository.getInstance().getFavoritos().contains(producto)) {
+                    FavoritosRepository.getInstance().removeFavorito(producto);
+                    Toast.makeText(getActivity(), producto.getNombre() + " eliminado de favoritos", Toast.LENGTH_SHORT).show();
+                } else {
+                    FavoritosRepository.getInstance().addFavorito(producto);
+                    Toast.makeText(getActivity(), producto.getNombre() + " agregado a favoritos", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         recyclerProductos.setAdapter(adaptadorProductos);
 
         return view;
@@ -137,5 +159,9 @@ public class FragmentHome extends Fragment {
                 }
             });
         }
+    }
+
+    public List<Producto> getProductosFavoritos() {
+        return productosFavoritos;  // Método para obtener los productos favoritos
     }
 }
