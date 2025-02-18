@@ -1,6 +1,9 @@
 package com.truek;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +18,19 @@ public class Categories extends BaseActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_categories);
+
+        ImageView arrowBack = findViewById(R.id.arrow_back);
+        arrowBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Volver a MainActivity
+                Intent intent = new Intent(Categories.this, MainActivity.class);
+                startActivity(intent);
+                finish(); // Cierra la actividad actual para que no se acumule en la pila
+            }
+        });
+
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
