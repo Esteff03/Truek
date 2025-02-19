@@ -12,7 +12,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Cargar el idioma guardado en SharedPreferences
+
         loadLocale();
     }
 

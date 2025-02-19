@@ -13,7 +13,9 @@ import android.widget.TextView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import fragments.Fragment_CreateAccount;
 import fragments.Fragment_Login;
@@ -21,42 +23,29 @@ import fragments.Fragment_Login;
 public class MainView extends BaseActivity { // Hereda de BaseActivity
 
     private ImageView flagIcon;
-    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view);
 
-        // Obtén la instancia de FirebaseAnalytics.
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        FirebaseAnalytics analytics = FirebaseAnalytics.getInstance(this);
-        Bundle bundle = new Bundle();
-        bundle.putString("message", "Integracion de Firebase completa");
-        analytics.logEvent("InitScreen", bundle);
-
-        // *** btn_register ahora debe cargar el fragment de CreateAccount ***
         Button btnRegister = findViewById(R.id.btn_register);
         btnRegister.setOnClickListener(v -> loadCreateAccountFragment());
 
-        // *** btn_login y arrow_login deben cargar el fragment de Login ***
         TextView btnLogin = findViewById(R.id.btn_login);
         ImageView arrowLogin = findViewById(R.id.arrow_login);
         View.OnClickListener goToLoginListener = v -> loadLoginFragment();
         btnLogin.setOnClickListener(goToLoginListener);
         arrowLogin.setOnClickListener(goToLoginListener);
 
-        // Selector de idioma
         LinearLayout languageSelector = findViewById(R.id.language_selector);
         flagIcon = findViewById(R.id.flag_icon);
 
-        // Cargar la bandera guardada desde SharedPreferences
         SharedPreferences preferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         String savedFlag = preferences.getString("flag", "flag_ic_spain");
         updateFlagIcon(savedFlag);
 
-        // Menu desplegable
         languageSelector.setOnClickListener(view -> showLanguageMenu(languageSelector));
     }
 
@@ -88,7 +77,6 @@ public class MainView extends BaseActivity { // Hereda de BaseActivity
             }
 
             if (!langCode.isEmpty()) {
-                // Guardar el idioma seleccionado en SharedPreferences
                 SharedPreferences preferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("language", langCode);
@@ -105,13 +93,19 @@ public class MainView extends BaseActivity { // Hereda de BaseActivity
         popupMenu.show();
     }
 
-    // Método para actualizar el icono de la bandera
+    private Map<String, Integer> flagResources = new HashMap<String, Integer>() {{
+        put("flag_ic_spain", R.drawable.flag_ic_spain);
+        put("flag_ic_us", R.drawable.flag_ic_us);
+        put("flag_ic_france", R.drawable.flag_ic_france);
+        put("flag_ic_italy", R.drawable.flag_ic_italy);
+    }};
+
     private void updateFlagIcon(String flagResource) {
-        int flagResId = getResources().getIdentifier(flagResource, "drawable", getPackageName());
-        if (flagResId != 0) {
+        Integer flagResId = flagResources.get(flagResource);
+        if (flagResId != null) {
             flagIcon.setImageResource(flagResId);
         } else {
-            flagIcon.setImageResource(R.drawable.flag_ic_spain);
+            flagIcon.setImageResource(R.drawable.flag_ic_spain); // Default
         }
     }
 
@@ -129,18 +123,15 @@ public class MainView extends BaseActivity { // Hereda de BaseActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        // Animaciones para las transiciones entre fragmentos
         fragmentTransaction.setCustomAnimations(
-                R.anim.anim_rigth_left, // Entrada
-                R.anim.anim_left_rigth // Salida
+                R.anim.anim_rigth_left,
+                R.anim.anim_left_rigth
         );
 
-        // Reemplazar el fragmento en el contenedor
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
-        // Hacer visible el contenedor del fragmento
         findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
     }
 }
