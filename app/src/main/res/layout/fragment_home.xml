@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <!-- Toolbar -->
         <include
             layout="@layout/toolbar_main"
