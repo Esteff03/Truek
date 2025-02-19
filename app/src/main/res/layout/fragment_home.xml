@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <!-- Toolbar -->
         <include
             layout="@layout/toolbar_main"
@@ -20,6 +21,14 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/tv_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No hay productos disponibles en este momento."
+        android:gravity="center"
+        android:textSize="16sp"
+        android:visibility="gone"/>
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -33,9 +34,10 @@ import java.util.List;
 public class FragmentHome extends Fragment {
 
     private RecyclerView recyclerProductos;
+    private TextView textViewNoData; // Agregado para manejar pantalla en blanco
     private AdaptadorProducto adaptadorProductos;
     private List<Producto> listaProductos;
-    private List<Producto> productosFavoritos;  // Lista para productos favoritos
+    private List<Producto> productosFavoritos;
     private FirebaseAuth auth;
 
     public FragmentHome() {
@@ -47,16 +49,16 @@ public class FragmentHome extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         auth = FirebaseAuth.getInstance();
-        productosFavoritos = new ArrayList<>();  // Inicializar la lista de favoritos
+        productosFavoritos = new ArrayList<>();
 
-        // Configuración de Toolbar
+        // Configuración de la UI
         ImageView ajustes = view.findViewById(R.id.ajustes);
         ImageView messageIcon = view.findViewById(R.id.message);
         EditText searchField = view.findViewById(R.id.buscador);
         Button btnCategories = view.findViewById(R.id.button1);
         Button btnFavorites = view.findViewById(R.id.button2);
+        textViewNoData = view.findViewById(R.id.tv_no_data); // Inicializar el mensaje de no hay datos
 
-        // Evento de clic para mostrar el menú desplegable
         ajustes.setOnClickListener(v -> mostrarMenu(v));
 
         messageIcon.setOnClickListener(v -> {
@@ -70,7 +72,7 @@ public class FragmentHome extends Fragment {
         });
 
         btnFavorites.setOnClickListener(v -> {
-            FragmentGuardado fragmentGuardado = new FragmentGuardado(); // O usa newInstance() si lo prefieres
+            FragmentGuardado fragmentGuardado = new FragmentGuardado();
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragmentGuardado)
                     .addToBackStack(null)
@@ -78,18 +80,14 @@ public class FragmentHome extends Fragment {
 
             BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottom_nav_bar);
             bottomNav.setSelectedItemId(R.id.heart);
-
         });
 
-
-
-
-        // Configurar RecyclerView con GridLayoutManager
+        // Configurar RecyclerView
         recyclerProductos = view.findViewById(R.id.recycler_productos);
-        recyclerProductos.setLayoutManager(new GridLayoutManager(getContext(), 2)); // 2 columnas
+        recyclerProductos.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerProductos.setHasFixedSize(true);
 
-        // Agregar datos de ejemplo
+        // Agregar datos de prueba
         listaProductos = new ArrayList<>();
         listaProductos.add(new Producto("PlayStation 5", "$499.00", R.drawable.chip, ""));
         listaProductos.add(new Producto("Smartphone 5G", "$799.00", R.drawable.chip, ""));
@@ -100,7 +98,6 @@ public class FragmentHome extends Fragment {
         listaProductos.add(new Producto("Chaqueta", "$60.00", R.drawable.clothes, ""));
         listaProductos.add(new Producto("Zapatillas", "$120.00", R.drawable.clothes, ""));
         listaProductos.add(new Producto("Reloj de Lujo", "$999.00", R.drawable.clothes, ""));
-
 
         // Asignar el adaptador
         adaptadorProductos = new AdaptadorProducto(listaProductos, new AdaptadorProducto.OnFavoritoClickListener() {
@@ -117,6 +114,15 @@ public class FragmentHome extends Fragment {
         });
 
         recyclerProductos.setAdapter(adaptadorProductos);
+
+        // ✅ Verificar si la lista de productos está vacía
+        if (listaProductos.isEmpty()) {
+            textViewNoData.setVisibility(View.VISIBLE); // Mostrar mensaje
+            recyclerProductos.setVisibility(View.GONE); // Ocultar lista
+        } else {
+            textViewNoData.setVisibility(View.GONE); // Ocultar mensaje
+            recyclerProductos.setVisibility(View.VISIBLE); // Mostrar lista
+        }
 
         return view;
     }
@@ -174,6 +180,6 @@ public class FragmentHome extends Fragment {
     }
 
     public List<Producto> getProductosFavoritos() {
-        return productosFavoritos;  // Método para obtener los productos favoritos
+        return productosFavoritos;
     }
 }
