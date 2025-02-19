@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.truek.AdaptadorProducto;
 import com.truek.Categories;
+import com.truek.Chat;
 import com.truek.FavoritosRepository;
 import com.truek.Producto;
 import com.truek.R;
@@ -58,8 +59,10 @@ public class FragmentHome extends Fragment {
         // Evento de clic para mostrar el menú desplegable
         ajustes.setOnClickListener(v -> mostrarMenu(v));
 
-        messageIcon.setOnClickListener(v ->
-                Toast.makeText(getActivity(), "Abrir mensajes", Toast.LENGTH_SHORT).show());
+        messageIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), Chat.class);
+            startActivity(intent);
+        });
 
         btnCategories.setOnClickListener(v ->{
             Intent intent = new Intent(getActivity(), Categories.class);
