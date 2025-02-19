@@ -3,6 +3,8 @@ package fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,29 +45,9 @@ public class Fragment_CreateAccount extends Fragment {
         });
 
         cancelButton.setOnClickListener(v -> {
-            // Cargar la animación de salida (de izquierda a derecha)
-            Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.anim_left_rigth);
-            animation.setDuration(500);
-
-            // Aplicar la animación a la vista del fragmento
-            view.startAnimation(animation);
-
-            // Añadir un listener para realizar la navegación una vez que termine la animación
-            animation.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) { }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    getParentFragmentManager().beginTransaction()
-                            .remove(Fragment_CreateAccount.this)
-                            .commitAllowingStateLoss();
-                    openSignup();
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) { }
-            });
+            getParentFragmentManager().beginTransaction()
+                    .commit();
+            openSignup();
         });
 
         return view;
@@ -78,19 +60,21 @@ public class Fragment_CreateAccount extends Fragment {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(requireActivity(), task -> {
                     if (task.isSuccessful()) {
-                        mAuth.getCurrentUser().reload().addOnCompleteListener(reloadTask -> {
-                            FirebaseUser user = mAuth.getCurrentUser();
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = task.getResult().getUser();
                             if (user != null) {
                                 Toast.makeText(getContext(), "Account ready!", Toast.LENGTH_SHORT).show();
                                 openMain();
                             }
-                        });
+                        }
                     } else {
                         Exception exception = task.getException();
                         if (exception instanceof FirebaseAuthUserCollisionException) {
                             Toast.makeText(getContext(), "Cuenta existente", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(getContext(), "Registration failed: " + exception.getMessage(), Toast.LENGTH_LONG).show();
+                            String errorMessage = exception.getMessage();
+                            Toast.makeText(getContext(), "Fallo de registro: " + errorMessage, Toast.LENGTH_LONG).show();
+                            Log.e("Fragment_CreateAccount", "Error de registro", exception); // Log para depuración
                         }
                     }
                 });
@@ -105,6 +89,10 @@ public class Fragment_CreateAccount extends Fragment {
             Toast.makeText(getContext(), "Email is required", Toast.LENGTH_SHORT).show();
             return false;
         }
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(getContext(), "Please enter a valid email", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if (password.isEmpty()) {
             Toast.makeText(getContext(), "Password is required", Toast.LENGTH_SHORT).show();
             return false;
@@ -116,16 +104,15 @@ public class Fragment_CreateAccount extends Fragment {
         return true;
     }
 
+
     private void openMain() {
         Intent intent = new Intent(getActivity(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.anim_rigth_left, android.R.anim.fade_in);
     }
 
     private void openSignup() {
         Intent intent = new Intent(getActivity(), MainView.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         getActivity().overridePendingTransition(R.anim.anim_rigth_left, android.R.anim.fade_in);
     }

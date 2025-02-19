@@ -51,10 +51,8 @@ public class FragmentHome extends Fragment {
         auth = FirebaseAuth.getInstance();
         productosFavoritos = new ArrayList<>();
 
-        // Configuración de la UI
         ImageView ajustes = view.findViewById(R.id.ajustes);
         ImageView messageIcon = view.findViewById(R.id.message);
-        EditText searchField = view.findViewById(R.id.buscador);
         Button btnCategories = view.findViewById(R.id.button1);
         Button btnFavorites = view.findViewById(R.id.button2);
         textViewNoData = view.findViewById(R.id.tv_no_data); // Inicializar el mensaje de no hay datos

@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- Codigo para poder hacer fotos con la camara -->
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
 
+    <!-- Permissions and features -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -20,25 +17,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Truek"
         tools:targetApi="31">
+
         <activity
             android:name=".Chat"
-            android:exported="true" />
-
-
+            android:exported="false" />
         <activity
             android:name=".Categories"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".Profile"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".Splash"
             android:exported="true">
-
-            <!-- Intent filter should be placed inside the activity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
