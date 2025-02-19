@@ -14,46 +14,50 @@
         android:padding="16dp"
         android:background="@android:color/white">
 
-        <FrameLayout
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="24dp">
+            android:layout_marginTop="24dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/rounded_image"
+            android:src="@drawable/upload_product"
+            android:elevation="8dp" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:background="@drawable/rounded_image"
-                android:src="@drawable/upload_product"
-                android:elevation="8dp" />
+        <!-- Contenedor horizontal para los botones -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
 
+            <!-- Botón de Cámara -->
             <Button
                 android:id="@+id/cameraButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cámara"
                 android:textColor="@android:color/white"
-                android:background="@android:color/black"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="8dp"
-                android:layout_gravity="top|start"
-                android:layout_margin="8dp"
+                android:background="@android:color/holo_blue_dark"
+                android:drawableStart="@android:drawable/ic_menu_camera"
+                android:padding="12dp"
+                android:layout_marginEnd="16dp"
                 android:contentDescription="Abrir cámara" />
 
+            <!-- Botón de Galería -->
             <Button
                 android:id="@+id/galleryButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Galería"
                 android:textColor="@android:color/white"
-                android:background="@android:color/black"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="8dp"
-                android:layout_gravity="top|end"
-                android:layout_margin="8dp"
+                android:background="@android:color/holo_orange_dark"
+                android:drawableStart="@android:drawable/ic_menu_gallery"
+                android:padding="12dp"
                 android:contentDescription="Abrir galería" />
-        </FrameLayout>
+
+        </LinearLayout>
 
         <EditText
             android:id="@+id/productName"

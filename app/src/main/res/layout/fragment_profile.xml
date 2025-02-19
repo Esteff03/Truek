@@ -35,7 +35,7 @@
                         android:id="@+id/full_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Taimoor Sikano"
+                        android:text="Nombre de usuario"
                         android:textSize="20sp"
                         android:layout_toRightOf="@+id/profile_image"
                         android:layout_centerVertical="true"
