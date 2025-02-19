@@ -1,5 +1,9 @@
 package fragments;
 
+import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -32,16 +36,23 @@ public class Fragment_Login extends Fragment {
         emailEditText = view.findViewById(R.id.email);
         passwordEditText = view.findViewById(R.id.password);
 
-        // Inicializar Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
         loginButton.setOnClickListener(v -> {
             if (validateInputs()) {
-                loginUser();
+                if (isConnectedToInternet()) {
+                    loginUser();
+                } else {
+                    Toast.makeText(getContext(), "No hay conexión a internet", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        cancelButton.setOnClickListener(v -> animateAndOpenSignup(view));
+        cancelButton.setOnClickListener(v -> {
+            getParentFragmentManager().beginTransaction()
+                    .commit();
+            openSignup();
+        });
 
         return view;
     }
@@ -51,12 +62,16 @@ public class Fragment_Login extends Fragment {
         String password = passwordEditText.getText().toString().trim();
 
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(requireActivity(), task -> {
+                .addOnCompleteListener((Activity) getContext(), task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            Toast.makeText(getContext(), "¡Inicio de sesión exitoso!", Toast.LENGTH_SHORT).show();
-                            openMainActivity();
+                            if (user.isEmailVerified()) {
+                                Toast.makeText(getContext(), "¡Inicio de sesión exitoso!", Toast.LENGTH_SHORT).show();
+                                openMainActivity();
+                            } else {
+                                Toast.makeText(getContext(), "Por favor verifica tu correo electrónico", Toast.LENGTH_LONG).show();
+                            }
                         }
                     } else {
                         showFirebaseError(task.getException().getMessage());
@@ -65,12 +80,16 @@ public class Fragment_Login extends Fragment {
     }
 
     private void showFirebaseError(String errorMessage) {
-        if (errorMessage != null && errorMessage.contains("password")) {
-            Toast.makeText(getContext(), "Contraseña incorrecta", Toast.LENGTH_LONG).show();
-        } else if (errorMessage != null && errorMessage.contains("no user record")) {
-            Toast.makeText(getContext(), "El correo no está registrado", Toast.LENGTH_LONG).show();
+        if (errorMessage != null) {
+            if (errorMessage.contains("password")) {
+                Toast.makeText(getContext(), "Contraseña incorrecta", Toast.LENGTH_LONG).show();
+            } else if (errorMessage.contains("no user record")) {
+                Toast.makeText(getContext(), "El correo no está registrado", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getContext(), "Error de autenticación: ", Toast.LENGTH_LONG).show();
+            }
         } else {
-            Toast.makeText(getContext(), "Error de autenticación", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Error desconocido, por favor intenta nuevamente", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -79,22 +98,20 @@ public class Fragment_Login extends Fragment {
         String password = passwordEditText.getText().toString().trim();
 
         if (email.isEmpty()) {
-            Toast.makeText(getContext(), "El correo es obligatorio", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"email_required", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(getContext(), "invalid_email", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (password.isEmpty()) {
-            Toast.makeText(getContext(), "La contraseña es obligatoria", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"password_required", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
 
-    private void openMainActivity() {
-        Intent intent = new Intent(requireActivity(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        requireActivity().overridePendingTransition(R.anim.anim_rigth_left, android.R.anim.fade_in);
-    }
 
     private void animateAndOpenSignup(View view) {
         Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.anim_left_rigth);
@@ -115,10 +132,22 @@ public class Fragment_Login extends Fragment {
         });
     }
 
-    private void openSignup() {
-        Intent intent = new Intent(requireActivity(), MainView.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    private void openMainActivity() {
+        Intent intent = new Intent(requireActivity(), MainActivity.class);
         startActivity(intent);
         requireActivity().overridePendingTransition(R.anim.anim_rigth_left, android.R.anim.fade_in);
+    }
+
+    private void openSignup() {
+        Intent intent = new Intent(requireActivity(), MainView.class);
+        startActivity(intent);
+        requireActivity().overridePendingTransition(R.anim.anim_rigth_left, android.R.anim.fade_in);
+    }
+
+    // Verificación de conexión a Internet
+    private boolean isConnectedToInternet() {
+        ConnectivityManager cm = (ConnectivityManager) requireContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 }

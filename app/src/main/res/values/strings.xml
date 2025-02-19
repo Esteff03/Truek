@@ -13,6 +13,10 @@
     <string name="btn_start">Comenzar</string>
     <string name="btn_register">Ya tengo una cuenta</string>
     <string name="txt_continue">- O continuar con -</string>
+    <string name="language_code_spanish" translatable="false">es</string>
+    <string name="language_code_english" translatable="false">en</string>
+    <string name="flag_spain" translatable="false">flag_ic_spain</string>
+    <string name="flag_us" translatable="false">flag_ic_us</string>
 
 
 </resources>
