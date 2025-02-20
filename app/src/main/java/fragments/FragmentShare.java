@@ -27,6 +27,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.truek.R;
+import com.truek.Product;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,6 +51,7 @@ public class FragmentShare extends Fragment {
     private ImageView imageView;
     private EditText productName, productPrice, productDescription;
     private Uri imageUri;
+    private Product p;
 
     private final ActivityResultLauncher<Intent> pickImageLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -152,7 +154,7 @@ public class FragmentShare extends Fragment {
 
     private Uri getImageUriFromBitmap(Bitmap bitmap) {
         ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.DISPLAY_NAME, "image_" + System.currentTimeMillis() + ".jpg");
+        values.put(MediaStore.Images.Media.DISPLAY_NAME, "image uid: " + p.getUid()+":" + ".jpg");
         values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
         values.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES); // Guarda en el directorio de imágenes
 
@@ -188,7 +190,7 @@ public class FragmentShare extends Fragment {
     }
 
     private void sendToSupabase(byte[] imageBytes) {
-        String filename = "imagen_" + System.currentTimeMillis() + ".jpg";  // Asumiendo que es JPG
+        String filename = "imagen_" + System.currentTimeMillis() +  ".jpg";  // Asumiendo que es JPG
         String url = SUPABASE_URL + "/storage/v1/object/" + BUCKET_NAME + "/" + filename;
 
         // Realiza la solicitud PUT a Supabase con el contenido de la imagen
@@ -235,7 +237,7 @@ public class FragmentShare extends Fragment {
 
         RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
         Request request = new Request.Builder()
-                .url(SUPABASE_URL + "/rest/v1/DB_Truek")
+                .url(SUPABASE_URL + "/rest/v1/products")
                 .header("Authorization", "Bearer " + SUPABASE_API_KEY)
                 .header("Content-Type", "application/json")
                 .post(body)
