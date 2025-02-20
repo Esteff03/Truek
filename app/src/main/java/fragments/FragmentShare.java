@@ -1,5 +1,7 @@
 package fragments;
 
+
+
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -26,8 +28,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.truek.FirebaseTokenManager;
 import com.truek.R;
-import com.truek.Product;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,11 +50,11 @@ public class FragmentShare extends Fragment {
     private static final String SUPABASE_URL = "https://pgosafydlwskwtvnuokk.supabase.co";
     private static final String SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnb3NhZnlkbHdza3d0dm51b2trIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTczOTQzODIxNywiZXhwIjoyMDU1MDE0MjE3fQ.2kKFUfVEo9pXvHa4GfdRR20KoFKJEUa55r21AF_K1bE";
     private static final String BUCKET_NAME = "Imagenes_1";
-
+    static final    String token = FirebaseTokenManager.getInstance().getFirebaseToken();
     private ImageView imageView;
     private EditText productName, productPrice, productDescription;
     private Uri imageUri;
-    private Product p;
+
 
     private final ActivityResultLauncher<Intent> pickImageLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -80,6 +83,8 @@ public class FragmentShare extends Fragment {
         productPrice = view.findViewById(R.id.productPrice);
         productDescription = view.findViewById(R.id.productDescription);
 
+
+
         Button cameraButton = view.findViewById(R.id.cameraButton);
         Button galleryButton = view.findViewById(R.id.galleryButton);
         Button uploadButton = view.findViewById(R.id.uploadProductButton);
@@ -105,6 +110,7 @@ public class FragmentShare extends Fragment {
         uploadButton.setOnClickListener(v -> uploadImage());
 
         return view;
+
     }
 
     private boolean checkCameraPermissions() {
@@ -154,7 +160,7 @@ public class FragmentShare extends Fragment {
 
     private Uri getImageUriFromBitmap(Bitmap bitmap) {
         ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.DISPLAY_NAME, "image uid: " + p.getUid()+":" + ".jpg");
+        values.put(MediaStore.Images.Media.DISPLAY_NAME, "image_: "+System.currentTimeMillis() + ".jpg");
         values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
         values.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES); // Guarda en el directorio de imágenes
 
@@ -189,8 +195,10 @@ public class FragmentShare extends Fragment {
         }
     }
 
+
+
     private void sendToSupabase(byte[] imageBytes) {
-        String filename = "imagen_" + System.currentTimeMillis() +  ".jpg";  // Asumiendo que es JPG
+        String filename = "imagen_ uid"+ token +":"+ System.currentTimeMillis() +  ".jpg";  // Asumiendo que es JPG
         String url = SUPABASE_URL + "/storage/v1/object/" + BUCKET_NAME + "/" + filename;
 
         // Realiza la solicitud PUT a Supabase con el contenido de la imagen
