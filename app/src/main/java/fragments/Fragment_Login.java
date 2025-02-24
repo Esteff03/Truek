@@ -1,17 +1,16 @@
 package fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,11 +25,12 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.json.JSONObject;
-import java.io.IOException;
 
 public class Fragment_Login extends Fragment {
-    private static final String SUPABASE_URL = "https://pgosafydlwskwtvnuokk.supabase.co";
-    private static final String SUPABASE_API_KEY = "TU_SUPABASE_API_KEY"; // ⚠️ Usa una variable segura en producción
+    // URL completa para el login en Supabase
+    private static final String SUPABASE_URL = "https://pgosafydlwskwtvnuokk.supabase.co/auth/v1/token?grant_type=password";
+    // Tu clave pública real
+    private static final String SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnb3NhZnlkbHdza3d0dm51b2trIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MzgyMTcsImV4cCI6MjA1NTAxNDIxN30.EmB_NLAqXji3UhtgaQsc4VmGrtnUHQlNiAb6Oau3fQo";
 
     private EditText emailEditText, passwordEditText;
     private final OkHttpClient client = new OkHttpClient();
@@ -55,10 +55,7 @@ public class Fragment_Login extends Fragment {
             }
         });
 
-        cancelButton.setOnClickListener(v -> {
-            getParentFragmentManager().beginTransaction().commit();
-            openSignup();
-        });
+        cancelButton.setOnClickListener(v -> openSignup());
 
         return view;
     }
@@ -69,13 +66,16 @@ public class Fragment_Login extends Fragment {
 
         new Thread(() -> {
             try {
+                // Construimos el JSON con las credenciales
                 JSONObject json = new JSONObject();
                 json.put("email", email);
                 json.put("password", password);
 
+                Log.d("Fragment_Login", "JSON: " + json.toString());
+
                 RequestBody body = RequestBody.create(json.toString(), MediaType.parse("application/json"));
                 Request request = new Request.Builder()
-                        .url(SUPABASE_URL + "/auth/v1/token?grant_type=password")
+                        .url(SUPABASE_URL)
                         .header("apikey", SUPABASE_API_KEY)
                         .header("Content-Type", "application/json")
                         .post(body)
@@ -90,13 +90,14 @@ public class Fragment_Login extends Fragment {
                         openMainActivity();
                     });
                 } else {
+                    Log.e("Fragment_Login", "Error response: " + responseBody);
                     getActivity().runOnUiThread(() ->
-                            Toast.makeText(getContext(), "Error al iniciar sesión", Toast.LENGTH_SHORT).show());
+                            Toast.makeText(getContext(), "Error al iniciar sesión: " + responseBody, Toast.LENGTH_LONG).show());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 getActivity().runOnUiThread(() ->
-                        Toast.makeText(getContext(), "Error de conexión", Toast.LENGTH_SHORT).show());
+                        Toast.makeText(getContext(), "Error de conexión: " + e.getMessage(), Toast.LENGTH_LONG).show());
             }
         }).start();
     }
