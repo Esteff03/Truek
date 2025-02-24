@@ -3,7 +3,7 @@ package com.truek;
 public class Product {
     private String name;
     private String description;
-    private String imageUrl;  // Si almacenas imágenes desde una URL
+    private String imageUrl;  // URL de la imagen almacenada en Supabase Storage
 
     // Constructor
     public Product(String name, String description, String imageUrl) {
@@ -37,5 +37,3 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 }
-
-

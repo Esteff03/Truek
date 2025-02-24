@@ -15,16 +15,25 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 import com.truek.MainActivity;
 import com.truek.MainView;
 import com.truek.R;
 
-public class Fragment_Login extends Fragment {
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import org.json.JSONObject;
+import java.io.IOException;
 
-    private FirebaseAuth mAuth;
+public class Fragment_Login extends Fragment {
+    private static final String SUPABASE_URL = "https://pgosafydlwskwtvnuokk.supabase.co";
+    private static final String SUPABASE_API_KEY = "TU_SUPABASE_API_KEY"; // ⚠️ Usa una variable segura en producción
+
     private EditText emailEditText, passwordEditText;
+    private final OkHttpClient client = new OkHttpClient();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,8 +44,6 @@ public class Fragment_Login extends Fragment {
         Button cancelButton = view.findViewById(R.id.button2);
         emailEditText = view.findViewById(R.id.email);
         passwordEditText = view.findViewById(R.id.password);
-
-        mAuth = FirebaseAuth.getInstance();
 
         loginButton.setOnClickListener(v -> {
             if (validateInputs()) {
@@ -49,8 +56,7 @@ public class Fragment_Login extends Fragment {
         });
 
         cancelButton.setOnClickListener(v -> {
-            getParentFragmentManager().beginTransaction()
-                    .commit();
+            getParentFragmentManager().beginTransaction().commit();
             openSignup();
         });
 
@@ -61,36 +67,38 @@ public class Fragment_Login extends Fragment {
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener((Activity) getContext(), task -> {
-                    if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        if (user != null) {
-                            if (user.isEmailVerified()) {
-                                Toast.makeText(getContext(), "¡Inicio de sesión exitoso!", Toast.LENGTH_SHORT).show();
-                                openMainActivity();
-                            } else {
-                                Toast.makeText(getContext(), "Por favor verifica tu correo electrónico", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    } else {
-                        showFirebaseError(task.getException().getMessage());
-                    }
-                });
-    }
+        new Thread(() -> {
+            try {
+                JSONObject json = new JSONObject();
+                json.put("email", email);
+                json.put("password", password);
 
-    private void showFirebaseError(String errorMessage) {
-        if (errorMessage != null) {
-            if (errorMessage.contains("password")) {
-                Toast.makeText(getContext(), "Contraseña incorrecta", Toast.LENGTH_LONG).show();
-            } else if (errorMessage.contains("no user record")) {
-                Toast.makeText(getContext(), "El correo no está registrado", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(getContext(), "Error de autenticación: ", Toast.LENGTH_LONG).show();
+                RequestBody body = RequestBody.create(json.toString(), MediaType.parse("application/json"));
+                Request request = new Request.Builder()
+                        .url(SUPABASE_URL + "/auth/v1/token?grant_type=password")
+                        .header("apikey", SUPABASE_API_KEY)
+                        .header("Content-Type", "application/json")
+                        .post(body)
+                        .build();
+
+                Response response = client.newCall(request).execute();
+                String responseBody = response.body() != null ? response.body().string() : "";
+
+                if (response.isSuccessful()) {
+                    getActivity().runOnUiThread(() -> {
+                        Toast.makeText(getContext(), "¡Inicio de sesión exitoso!", Toast.LENGTH_SHORT).show();
+                        openMainActivity();
+                    });
+                } else {
+                    getActivity().runOnUiThread(() ->
+                            Toast.makeText(getContext(), "Error al iniciar sesión", Toast.LENGTH_SHORT).show());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                getActivity().runOnUiThread(() ->
+                        Toast.makeText(getContext(), "Error de conexión", Toast.LENGTH_SHORT).show());
             }
-        } else {
-            Toast.makeText(getContext(), "Error desconocido, por favor intenta nuevamente", Toast.LENGTH_LONG).show();
-        }
+        }).start();
     }
 
     private boolean validateInputs() {
@@ -98,38 +106,18 @@ public class Fragment_Login extends Fragment {
         String password = passwordEditText.getText().toString().trim();
 
         if (email.isEmpty()) {
-            Toast.makeText(getContext(),"email_required", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "El correo es obligatorio", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(getContext(), "invalid_email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Correo inválido", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (password.isEmpty()) {
-            Toast.makeText(getContext(),"password_required", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "La contraseña es obligatoria", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
-    }
-
-
-    private void animateAndOpenSignup(View view) {
-        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.anim_left_rigth);
-        animation.setDuration(500);
-        view.startAnimation(animation);
-
-        animation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {}
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                openSignup();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {}
-        });
     }
 
     private void openMainActivity() {
@@ -144,7 +132,6 @@ public class Fragment_Login extends Fragment {
         requireActivity().overridePendingTransition(R.anim.anim_rigth_left, android.R.anim.fade_in);
     }
 
-    // Verificación de conexión a Internet
     private boolean isConnectedToInternet() {
         ConnectivityManager cm = (ConnectivityManager) requireContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
