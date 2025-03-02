@@ -53,7 +53,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="99dp"
-        android:src="@drawable/toolbar_messageicon"
+        android:src="@drawable/ic_notifications"
         app:layout_constraintBottom_toBottomOf="@+id/app_name"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toEndOf="@+id/app_name"

@@ -7,13 +7,11 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,11 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.truek.AdaptadorProducto;
 import com.truek.Categories;
-import com.truek.Chat;
+import com.truek.Notifications;
 import com.truek.FavoritosRepository;
 import com.truek.Producto;
 import com.truek.R;
-import com.truek.MainView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +54,7 @@ public class FragmentHome extends Fragment {
         ajustes.setOnClickListener(v -> mostrarMenu(v));
 
         messageIcon.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), Chat.class);
+            Intent intent = new Intent(getActivity(), Notifications.class);
             startActivity(intent);
         });
 

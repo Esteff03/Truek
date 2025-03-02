@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_bar);
 
-        // Solo cargar el fragmento si la actividad se inicia por primera vez
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new FragmentHome())
