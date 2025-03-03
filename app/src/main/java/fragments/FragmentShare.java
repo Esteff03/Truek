@@ -90,13 +90,13 @@ public class FragmentShare extends Fragment {
 
         // Abre la cámara
         cameraButton.setOnClickListener(v -> {
-            if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            if (checkCameraPermissions()) {
                 Log.d("FragmentShare", "Intentando abrir cámara");
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 cameraLauncher.launch(cameraIntent);
             } else {
-                // Request permission if not granted
-                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.CAMERA}, REQUEST_CODE_CAMERA);
+                Log.d("FragmentShare", "Permiso de cámara denegado");
+                requestCameraPermission();
             }
         });
 
@@ -146,22 +146,17 @@ public class FragmentShare extends Fragment {
         }
     }
 
+    // Maneja la respuesta de los permisos solicitados
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         if (requestCode == REQUEST_CODE_CAMERA) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permiso concedido, abre la cámara
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 cameraLauncher.launch(cameraIntent);
             } else {
-                // Si el permiso es denegado permanentemente, muestra un mensaje explicativo
-                if (!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.CAMERA)) {
-                    Toast.makeText(getActivity(), "Permiso de cámara denegado permanentemente. Ve a Configuración para habilitarlo.", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getActivity(), "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(getActivity(), "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
             }
         } else if (requestCode == REQUEST_CODE_STORAGE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -169,16 +164,10 @@ public class FragmentShare extends Fragment {
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 pickImageLauncher.launch(galleryIntent);
             } else {
-                // Si el permiso es denegado permanentemente, muestra un mensaje explicativo
-                if (!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    Toast.makeText(getActivity(), "Permiso de almacenamiento denegado permanentemente. Ve a Configuración para habilitarlo.", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getActivity(), "Permiso de almacenamiento denegado", Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(getActivity(), "Permiso de almacenamiento denegado", Toast.LENGTH_SHORT).show();
             }
         }
     }
-
 
     // Convierte el Bitmap a un URI y guarda la imagen en el dispositivo
     private Uri getImageUriFromBitmap(Bitmap bitmap) {
@@ -241,6 +230,8 @@ public class FragmentShare extends Fragment {
                 if (response.isSuccessful()) {
                     String imageUrl = SUPABASE_URL + "/storage/v1/object/" + BUCKET_NAME + "/" + filename;
                     saveProductToDatabase(imageUrl);
+                    Toast.makeText(getActivity(), "Imagen subida correctamente", Toast.LENGTH_SHORT).show();
+                    resetFields();
                 } else {
                     getActivity().runOnUiThread(() -> {
                         Toast.makeText(getActivity(), "Error al subir imagen: " + response.message(), Toast.LENGTH_SHORT).show();
@@ -320,6 +311,7 @@ public class FragmentShare extends Fragment {
                 Response response = client.newCall(request).execute();
                 if (response.isSuccessful()) {
                     getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), "Producto subido con éxito", Toast.LENGTH_SHORT).show());
+                    resetFields();
                 } else {
                     // Log de mensaje de error real desde la respuesta
                     String errorMessage = response.body() != null ? response.body().string() : "Error desconocido";
@@ -330,9 +322,17 @@ public class FragmentShare extends Fragment {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show());
             }
         }).start();
+    }
+
+    // Método para limpiar los campos después de subir la imagen
+    private void resetFields() {
+        imageUri = null;
+        imageView.setImageResource(R.drawable.rounded_image); // Reemplaza con un icono predeterminado
+        productName.setText("");
+        productPrice.setText("");
+        productDescription.setText("");
     }
 
 }
