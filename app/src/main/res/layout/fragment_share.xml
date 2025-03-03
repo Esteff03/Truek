@@ -14,17 +14,18 @@
         android:padding="16dp"
         android:background="@android:color/white">
 
+        <!-- Contenedor horizontal para los botones -->
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginTop="24dp"
-            android:scaleType="centerCrop"
             android:background="@drawable/rounded_image"
-            android:src="@drawable/upload_product"
-            android:elevation="8dp" />
+            android:elevation="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/upload_product" />
 
-        <!-- Contenedor horizontal para los botones -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
