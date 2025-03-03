@@ -163,23 +163,23 @@
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/profile_usericon"
                             android:drawablePadding="10dp"
-                            android:text="Taimoo Sikander"/>
+                            android:text="Nombre de usuario"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Email -->
+                    <!-- Direccion -->
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:hint="E-Mail">
+                        android:hint="Adress">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/email"
+                            android:id="@+id/adress"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/profile_email"
                             android:drawablePadding="10dp"
-                            android:text="admin@gmail.com"/>
+                            android:text="Calle, número, CP"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!-- Teléfono -->
@@ -198,21 +198,6 @@
                             android:text="+34 655 55 55 55"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!-- Contraseña -->
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:hint="Password">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/pw"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/profile_password"
-                            android:drawablePadding="10dp"
-                            android:text="aabbccc12345"/>
-                    </com.google.android.material.textfield.TextInputLayout>
 
                     <!-- Botones de actualización y guardado -->
                     <Button

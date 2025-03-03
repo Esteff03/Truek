@@ -16,12 +16,11 @@ import com.truek.R;
 
 public class FragmentProfile extends Fragment {
     // Declarar las variables
-    private TextInputEditText emailEditText;
+    private TextInputEditText adressEditText;
     private TextInputEditText nameEditText;
     private TextInputEditText tlEditText;
-    private TextInputEditText pwEditText;
     private TextView fullname, payment, exchange;
-    String name, email, tl, pw;
+    String name, adress, tl;
 
 
 
@@ -44,10 +43,9 @@ public class FragmentProfile extends Fragment {
 
 
         // Inicializar las vistas
-        emailEditText = view.findViewById(R.id.email);
+        adressEditText = view.findViewById(R.id.adress);
         nameEditText = view.findViewById(R.id.name);
         tlEditText = view.findViewById(R.id.tl);
-        pwEditText = view.findViewById(R.id.pw);
         fullname = view.findViewById(R.id.full_name);
         payment = view.findViewById(R.id.payment);
         exchange = view.findViewById(R.id.exchange);
@@ -61,14 +59,11 @@ public class FragmentProfile extends Fragment {
             if (!name.isEmpty()) {
                 fullname.setText(name);
             }
-            if (!email.isEmpty()) {
-                emailEditText.setText(email);
+            if (!adress.isEmpty()) {
+                adressEditText.setText(adress);
             }
             if (!tl.isEmpty()) {
                 tlEditText.setText(tl);
-            }
-            if (!pw.isEmpty()) {
-                pwEditText.setText(pw);
             }
 
             // Mensaje para confirmar que la información fue modificada
