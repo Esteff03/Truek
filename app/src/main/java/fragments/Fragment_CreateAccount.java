@@ -1,6 +1,8 @@
 package fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
@@ -16,6 +18,7 @@ import com.truek.MainActivity;
 import com.truek.MainView;
 import com.truek.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.OutputStream;
@@ -104,6 +107,29 @@ public class Fragment_CreateAccount extends Fragment {
                     if (responseCode == HttpURLConnection.HTTP_OK) {
                         // Registro exitoso
                         Toast.makeText(getContext(), "¡Cuenta creada exitosamente!", Toast.LENGTH_SHORT).show();
+                        JSONObject jsonResponse = null;
+                        try {
+                            jsonResponse = new JSONObject(responseStr);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                        String accessToken = null;
+                        try {
+                            accessToken = jsonResponse.getString("access_token");
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        // Aquí obtienes el JWT
+                        Log.d("JWT", "Access Token: " + accessToken);
+
+                        // Puedes almacenar el token en SharedPreferences para usarlo más tarde
+                        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("auth", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("jwt", accessToken);
+                        editor.apply();
+
+                        // Navegar a la pantalla principal
                         openMain();
                     } else {
                         // Ocurrió algún error, parseamos el JSON de error si existe
