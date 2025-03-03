@@ -57,8 +57,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/car"
-                    android:contentDescription="@string/car_image" />
+                    android:src="@drawable/car" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -91,8 +90,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/motor"
-                    android:contentDescription="@string/motor_image" />
+                    android:src="@drawable/motor"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -125,8 +123,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/clothes"
-                    android:contentDescription="@string/clothes_image" />
+                    android:src="@drawable/clothes"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -159,8 +156,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/house"
-                    android:contentDescription="@string/house_image" />
+                    android:src="@drawable/house"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -193,8 +189,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/chip"
-                    android:contentDescription="@string/chip_image" />
+                    android:src="@drawable/chip"/>
 
                 <TextView
                     android:layout_width="wrap_content"
