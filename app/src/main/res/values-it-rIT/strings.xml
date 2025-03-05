@@ -10,8 +10,6 @@
     <string name="btn_start">Iniziamo</string>
     <string name="btn_register">Ho già un account</string>
     <string name="string_continue">- Oppure continua con -</string>
-    <string name="btn_share">Condividere</string>
-    <string name="btn_upload">Pubblicare</string>
     <string name="btn_cancel">Annullare</string>
     <string name="btn_save">Salvare</string>
     <string name="btn_delete">Eliminare</string>
