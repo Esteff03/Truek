@@ -19,6 +19,7 @@ import java.util.Map;
 
 import fragments.Fragment_CreateAccount;
 import fragments.Fragment_Login;
+import fragments.*;
 
 public class MainView extends BaseActivity { // Hereda de BaseActivity
 
