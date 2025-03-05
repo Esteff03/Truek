@@ -15,9 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.truek.MainActivity;
-import com.truek.MainView;
-import com.truek.R;
+import com.sbjs.truek.MainActivity;
+import com.sbjs.truek.MainView;
+import com.sbjs.truek.R;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;

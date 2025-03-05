@@ -181,7 +181,6 @@
                         android:id="@+id/adress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/profile_adress"
                         android:drawablePadding="10dp"
                         android:text="Calle, número, CP"/>
                 </com.google.android.material.textfield.TextInputLayout>

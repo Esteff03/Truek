@@ -1,4 +1,4 @@
-package com.truek;
+package com.sbjs.truek;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
