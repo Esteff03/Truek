@@ -10,4 +10,16 @@
     <string name="btn_start">Commençons</string>
     <string name="btn_register">J\'ai déjà un compte</string>
     <string name="string_continue">- Ou continuer avec -</string>
+    <string name="btn_cancel">Annuler</string>
+    <string name="btn_save">Enregistrer</string>
+    <string name="btn_delete">Supprimer</string>
+    <string name="btn_edit">Modifier</string>
+    <string name="full_name">Nom d\'utilisateur</string>
+    <string name="payment_desc">Portefeuille</string>
+    <string name="booking_desc">Échange</string>
+    <string name="name">Nom d\'utilisateur</string>
+    <string name="adress">Rue, numéro, code postal</string>
+    <string name="btnUpdate">Mettre à jour</string>
+    <string name="btnSave">Enregistrer</string>
+    <string name="tl">+33</string>
 </resources>
