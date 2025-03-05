@@ -30,7 +30,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.truek.R;
+import com.sbjs.truek.MainActivity;
+import com.sbjs.truek.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -312,6 +313,7 @@ public class FragmentShare extends Fragment {
                 if (response.isSuccessful()) {
                     getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), "Producto subido con éxito", Toast.LENGTH_SHORT).show());
                     resetFields();
+                    openMain();
                 } else {
                     // Log de mensaje de error real desde la respuesta
                     String errorMessage = response.body() != null ? response.body().string() : "Error desconocido";
@@ -333,6 +335,13 @@ public class FragmentShare extends Fragment {
         productName.setText("");
         productPrice.setText("");
         productDescription.setText("");
+    }
+
+    private void openMain() {
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+        // Animación de transición opcional
+        getActivity().overridePendingTransition(R.anim.anim_rigth_left, android.R.anim.fade_in);
     }
 
 }

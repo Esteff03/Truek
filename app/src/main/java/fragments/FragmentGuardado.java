@@ -12,10 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.truek.AdaptadorProducto;
-import com.truek.FavoritosRepository;
-import com.truek.Producto;
-import com.truek.R;
+import com.sbjs.truek.FavoritosRepository;
+import com.sbjs.truek.Producto;
+import com.sbjs.truek.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -59,12 +58,6 @@ public class FragmentGuardado extends Fragment {
             favoritos = new ArrayList<>();
         }
 
-        // Configurar el adaptador con la lista de favoritos
-        AdaptadorProducto adaptador = new AdaptadorProducto(favoritos, producto -> {
-            // Implementa aquí la acción cuando se haga clic en un producto
-        });
-
-        recyclerFavoritos.setAdapter(adaptador);
 
         return view;
     }

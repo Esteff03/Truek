@@ -1,4 +1,4 @@
-package com.truek;
+package com.sbjs.truek;
 
 import java.util.ArrayList;
 import java.util.List;

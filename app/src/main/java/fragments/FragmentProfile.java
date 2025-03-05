@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
-import com.truek.R;
+import com.sbjs.truek.R;
 
 public class FragmentProfile extends Fragment {
     // Declarar las variables
