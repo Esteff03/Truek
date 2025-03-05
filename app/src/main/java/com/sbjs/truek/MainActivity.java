@@ -1,7 +1,7 @@
-package com.truek;
+package com.sbjs.truek;
 
 import android.os.Bundle;
-import android.view.View;
+
 import androidx.appcompat.widget.Toolbar;
 
 

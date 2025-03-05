@@ -1,129 +1,113 @@
 package fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.truek.AdaptadorProducto;
-import com.truek.Categories;
-import com.truek.Notifications;
-import com.truek.FavoritosRepository;
-import com.truek.Producto;
-import com.truek.R;
+import com.sbjs.truek.AdaptadorProducto;
+import com.sbjs.truek.Producto;
+import com.sbjs.truek.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentHome extends Fragment {
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
-    private RecyclerView recyclerProductos;
-    private TextView textViewNoData;
-    private AdaptadorProducto adaptadorProductos;
-    private List<Producto> listaProductos;
-    private List<Producto> productosFavoritos;
+public class FragmentHome extends Fragment {
+    private static final String SUPABASE_URL = "https://pgosafydlwskwtvnuokk.supabase.co/rest/v1/products?select=*";
+    private static final String SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnb3NhZnlkbHdza3d0dm51b2trIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MzgyMTcsImV4cCI6MjA1NTAxNDIxN30.EmB_NLAqXji3UhtgaQsc4VmGrtnUHQlNiAb6Oau3fQo";
+
+    private RecyclerView recyclerView;
+    private AdaptadorProducto adapter;
+    private List<Producto> productList;
+    private TextView tvNoData;
 
     public FragmentHome() {
         // Constructor vacío requerido
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        productosFavoritos = new ArrayList<>();
 
-        ImageView ajustes = view.findViewById(R.id.ajustes);
-        ImageView messageIcon = view.findViewById(R.id.message);
-        Button btnCategories = view.findViewById(R.id.button1);
-        Button btnFavorites = view.findViewById(R.id.button2);
-        textViewNoData = view.findViewById(R.id.tv_no_data);
+        recyclerView = view.findViewById(R.id.recycler_productos);
+        tvNoData = view.findViewById(R.id.tv_no_data);
+        productList = new ArrayList<>();
+        adapter = new AdaptadorProducto(getContext(), productList);
 
-        ajustes.setOnClickListener(v -> mostrarMenu(v));
+        // Configurar GridLayout para mostrar productos en 2 columnas
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerView.setAdapter(adapter);
 
-        messageIcon.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), Notifications.class);
-            startActivity(intent);
-        });
-
-        btnCategories.setOnClickListener(v ->{
-            Intent intent = new Intent(getActivity(), Categories.class);
-            startActivity(intent);
-        });
-
-        btnFavorites.setOnClickListener(v -> {
-            FragmentGuardado fragmentGuardado = new FragmentGuardado();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragmentGuardado)
-                    .addToBackStack(null)
-                    .commit();
-
-            BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottom_nav_bar);
-            bottomNav.setSelectedItemId(R.id.heart);
-        });
-
-        recyclerProductos = view.findViewById(R.id.recycler_productos);
-        recyclerProductos.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        recyclerProductos.setHasFixedSize(true);
-
-        listaProductos = new ArrayList<>();
-        listaProductos.add(new Producto("PlayStation 5", "$499.00", R.drawable.chip, ""));
-        listaProductos.add(new Producto("Smartphone 5G", "$799.00", R.drawable.chip, ""));
-        listaProductos.add(new Producto("Laptop Gaming", "$1299.00", R.drawable.chip, ""));
-        listaProductos.add(new Producto("Curso UX", "$29.00", R.drawable.chip, ""));
-        listaProductos.add(new Producto("Guitarra", "$250.00", R.drawable.chip, ""));
-        listaProductos.add(new Producto("Libro de Diseño", "$45.00", R.drawable.chip, ""));
-        listaProductos.add(new Producto("Chaqueta", "$60.00", R.drawable.clothes, ""));
-        listaProductos.add(new Producto("Zapatillas", "$120.00", R.drawable.clothes, ""));
-        listaProductos.add(new Producto("Reloj de Lujo", "$999.00", R.drawable.clothes, ""));
-
-        adaptadorProductos = new AdaptadorProducto(listaProductos, new AdaptadorProducto.OnFavoritoClickListener() {
-            @Override
-            public void onFavoritoClick(Producto producto) {
-                if (FavoritosRepository.getInstance().getFavoritos().contains(producto)) {
-                    FavoritosRepository.getInstance().removeFavorito(producto);
-                    Toast.makeText(getActivity(), producto.getNombre() + " eliminado de favoritos", Toast.LENGTH_SHORT).show();
-                } else {
-                    FavoritosRepository.getInstance().addFavorito(producto);
-                    Toast.makeText(getActivity(), producto.getNombre() + " agregado a favoritos", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        recyclerProductos.setAdapter(adaptadorProductos);
-
-        if (listaProductos.isEmpty()) {
-            textViewNoData.setVisibility(View.VISIBLE);
-            recyclerProductos.setVisibility(View.GONE);
-        } else {
-            textViewNoData.setVisibility(View.GONE);
-            recyclerProductos.setVisibility(View.VISIBLE);
-        }
-
+        fetchProductsFromSupabase();
         return view;
     }
 
-    private void mostrarMenu(View v) {
-        PopupMenu popupMenu = new PopupMenu(getContext(), v);
-        MenuInflater inflater = popupMenu.getMenuInflater();
-        inflater.inflate(R.menu.menu_settings, popupMenu.getMenu());
+    private void fetchProductsFromSupabase() {
+        new Thread(() -> {
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url(SUPABASE_URL)
+                    .header("apikey", SUPABASE_API_KEY)
+                    .header("Authorization", "Bearer " + SUPABASE_API_KEY)
+                    .header("Content-Type", "application/json")
+                    .build();
 
-        popupMenu.show();
+            try {
+                Response response = client.newCall(request).execute();
+                String responseBody = response.body() != null ? response.body().string() : "Respuesta vacía";
+
+                Log.d("SupabaseResponse", "Respuesta completa de Supabase: " + responseBody);
+
+                if (response.isSuccessful() && !responseBody.equals("[]")) {
+                    JSONArray jsonArray = new JSONArray(responseBody);
+
+                    List<Producto> tempList = new ArrayList<>();
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String name = jsonObject.optString("name", "Sin nombre");
+                        String price = jsonObject.optString("price", "0");
+                        String description = jsonObject.optString("description", "Sin descripción");
+                        String imageUrl = jsonObject.optString("image_url", "");
+
+                        Log.d("ProductData", "Producto: " + name + ", Precio: " + price + ", Imagen: " + imageUrl);
+
+                        tempList.add(new Producto(name, price, description, imageUrl));
+                    }
+
+                    getActivity().runOnUiThread(() -> {
+                        productList.clear();
+                        productList.addAll(tempList);
+                        adapter.notifyDataSetChanged();
+
+                        tvNoData.setVisibility(productList.isEmpty() ? View.VISIBLE : View.GONE);
+                    });
+
+                } else {
+                    Log.e("SupabaseResponse", "Error en la petición o no hay productos: " + response.message());
+                }
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+                Log.e("SupabaseError", "Error al obtener los productos", e);
+            }
+        }).start();
     }
 
-    public List<Producto> getProductosFavoritos() {
-        return productosFavoritos;
-    }
 }

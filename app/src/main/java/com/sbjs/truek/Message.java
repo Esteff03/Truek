@@ -1,4 +1,4 @@
-package com.truek;
+package com.sbjs.truek;
 
 public class Message {
     private String text;
