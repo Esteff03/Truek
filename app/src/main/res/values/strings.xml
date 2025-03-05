@@ -2,21 +2,37 @@
     <string name="app_name" translatable="false">Truek</string>
 
     <!--Strings del activiy_login-->
-    <string name="login">Iniciar Sesion</string>
-    <string name="login_message">¡Bienvenido de nuevo!</string>
-    <string name="user">Correo electrónico</string>
-    <string name="password">Contraseña</string>
-    <string name="next">Siguiente</string>
-    <string name="cancel">Cancelar</string>
+    <string name="login" translatable="false">Iniciar Sesion</string>
+    <string name="login_message" translatable="false">¡Bienvenido de nuevo!</string>
+    <string name="user" translatable="false">Correo electrónico</string>
+    <string name="password" translatable="false">Contraseña</string>
+    <string name="next" translatable="false">Siguiente</string>
+    <string name="cancel" translatable="false">Cancelar</string>
 
-    <!--Strings del activity_main_view-->
-    <string name="btn_start">Comenzar</string>
-    <string name="btn_register">Ya tengo una cuenta</string>
-    <string name="txt_continue">- O continuar con -</string>
+    <!--Strings del activity_main_view   -->
+    <string name="btn_start" translatable="false">Comenzar</string>
+    <string name="btn_register" translatable="false">Ya tengo una cuenta</string>
+    <string name="txt_continue" translatable="false">- O continuar con -</string>
     <string name="language_code_spanish" translatable="false">es</string>
     <string name="language_code_english" translatable="false">en</string>
     <string name="flag_spain" translatable="false">flag_ic_spain</string>
     <string name="flag_us" translatable="false">flag_ic_us</string>
+    <string name="string_continue" translatable="false">- O continua con -</string>
+    <string name="btn_share" translatable="false">Compartir</string>
+    <string name="btn_upload" translatable="false">Subir</string>
+    <string name="btn_cancel" translatable="false">Cancelar</string>
+    <string name="btn_save" translatable="false">Guardar</string>
+    <string name="btn_delete" translatable="false">Eliminar</string>
+    <string name="btn_edit" translatable="false">Editar</string>
 
+    <!--Strings profile-->
+    <string name="full_name" translatable="false">Nombre de usuario</string>
+    <string name="payment_desc" translatable="false">Wallet</string>
+    <string name="name" translatable="false">Nombre de usuario</string>
+    <string name="adress" translatable="false">Calle, número, CP</string>
+    <string name="tl" translatable="false">+34 655 55 55 55</string>
+    <string name="btnUpdate" translatable="false">Actualizar</string>
+    <string name="btnSave" translatable="false">Guardar</string>
+    <string name="booking_desc" translatable="false">Divisa</string>
 
 </resources>

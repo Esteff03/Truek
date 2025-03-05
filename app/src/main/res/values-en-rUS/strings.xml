@@ -10,4 +10,16 @@
     <string name="btn_start">Let\'s get started</string>
     <string name="btn_register">I already have an account</string>
     <string name="string_continue">- OR Continue with -</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_edit">Edit</string>
+    <string name="full_name">Username</string>
+    <string name="payment_desc">Wallet</string>
+    <string name="booking_desc">Exchange</string>
+    <string name="name">Username</string>
+    <string name="adress">Street, number, postal code</string>
+    <string name="btnUpdate">Update</string>
+    <string name="btnSave">Save</string>
+    <string name="tl">+44</string>
 </resources>
