@@ -20,6 +20,7 @@
         android:textSize="14sp"
         android:layout_marginTop="4dp"/>
 
+
     <TextView
         android:id="@+id/precio_producto"
         android:layout_width="wrap_content"
