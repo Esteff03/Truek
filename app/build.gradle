@@ -6,12 +6,16 @@ android {
     namespace 'com.truek'
     compileSdk 35
 
+
+
+
+
     defaultConfig {
         applicationId "com.truek"
         minSdk 24
         targetSdk 34
         versionCode 3
-        versionName "2.2.0"
+        versionName "2.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
