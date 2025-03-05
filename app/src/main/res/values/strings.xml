@@ -9,7 +9,7 @@
     <string name="next" translatable="false">Siguiente</string>
     <string name="cancel" translatable="false">Cancelar</string>
 
-    <!--Strings del activity_main_view-->
+    <!--Strings del activity_main_view -->
     <string name="btn_start" translatable="false">Comenzar</string>
     <string name="btn_register" translatable="false">Ya tengo una cuenta</string>
     <string name="txt_continue" translatable="false">- O continuar con -</string>
@@ -24,25 +24,5 @@
     <string name="btn_save" translatable="false">Guardar</string>
     <string name="btn_delete" translatable="false">Eliminar</string>
     <string name="btn_edit" translatable="false">Editar</string>
-    <string name="btn_close" translatable="false">Cerrar</string>
-    <string name="btn_ok" translatable="false">Aceptar</string>
-    <string name="btn_cancel_delete" translatable="false">Cancelar</string>
-    <string name="btn_delete_confirm" translatable="false">Eliminar</string>
-    <string name="btn_edit_confirm" translatable="false">Editar</string>
-    <string name="btn_save_confirm" translatable="false">Guardar</string>
-    <string name="btn_share_confirm" translatable="false">Compartir</string>
-    <string name="btn_upload_confirm" translatable="false">Subir</string>
-    <string name="btn_close_confirm" translatable="false">Cerrar</string>
-    <string name="btn_ok_confirm" translatable="false">Aceptar</string>
-    <string name="btn_cancel_confirm" translatable="false">Cancelar</string>
-    <string name="btn_cancel_edit" translatable="false">Cancelar</string>
-    <string name="btn_save_edit" translatable="false">Guardar</string>
-    <string name="btn_cancel_share" translatable="false">Cancelar</string>
-    <string name="btn_upload_edit" translatable="false">Subir</string>
-    <string name="btn_close_edit" translatable="false">Cerrar</string>
-    <string name="btn_ok_edit" translatable="false">Aceptar</string>
-    <string name="btn_cancel_upload" translatable="false">Cancelar</string>
-    <string name="btn_upload_confirm" translatable="false">Subir</string>
-    <string name="btn_close_upload" translatable="false">Cerrar</string>
-    <string name="btn_ok_upload" translatable="false">Aceptar</string>
+
 </resources>

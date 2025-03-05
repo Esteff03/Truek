@@ -10,32 +10,4 @@
     <string name="btn_start">Let\'s get started</string>
     <string name="btn_register">I already have an account</string>
     <string name="string_continue">- OR Continue with -</string>
-    <string name="btn_share">Share</string>
-    <string name="btn_upload">Upload</string>
-    <string name="btn_cancel">Cancel</string>
-    <string name="btn_save">Save</string>
-    <string name="btn_delete">Delete</string>
-    <string name="btn_edit">Edit</string>
-    <string name="btn_close">Close</string>
-    <string name="btn_ok">Accept</string>
-    <string name="btn_cancel_delete">Cancel</string>
-    <string name="btn_delete_confirm">Delete</string>
-    <string name="btn_edit_confirm">Edit</string>
-    <string name="btn_save_confirm">Save</string>
-    <string name="btn_save_confirm">S</string>
-    <string name="btn_share_confirm">Share</string>
-    <string name="btn_upload_confirm">Upload</string>
-    <string name="btn_close_confirm">Close</string>
-    <string name="btn_ok_confirm">Accept</string>
-    <string name="btn_cancel_confirm">Cancel</string>
-    <string name="btn_cancel_edit">Cancel</string>
-    <string name="btn_save_edit">Save</string>
-    <string name="btn_cancel_share">Cancel</string>
-    <string name="btn_upload_edit">Upload</string>
-    <string name="btn_close_edit">Close</string>
-    <string name="btn_ok_edit">Accept</string>
-    <string name="btn_cancel_upload">Cancel</string>
-    <string name="btn_close_upload">Close</string>
-    <string name="btn_ok_upload">Accept</string>
-
 </resources>
