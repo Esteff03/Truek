@@ -2,21 +2,47 @@
     <string name="app_name" translatable="false">Truek</string>
 
     <!--Strings del activiy_login-->
-    <string name="login">Iniciar Sesion</string>
-    <string name="login_message">¡Bienvenido de nuevo!</string>
-    <string name="user">Correo electrónico</string>
-    <string name="password">Contraseña</string>
-    <string name="next">Siguiente</string>
-    <string name="cancel">Cancelar</string>
+    <string name="login" translatable="false">Iniciar Sesion</string>
+    <string name="login_message" translatable="false">¡Bienvenido de nuevo!</string>
+    <string name="user" translatable="false">Correo electrónico</string>
+    <string name="password" translatable="false">Contraseña</string>
+    <string name="next" translatable="false">Siguiente</string>
+    <string name="cancel" translatable="false">Cancelar</string>
 
     <!--Strings del activity_main_view-->
-    <string name="btn_start">Comenzar</string>
-    <string name="btn_register">Ya tengo una cuenta</string>
-    <string name="txt_continue">- O continuar con -</string>
+    <string name="btn_start" translatable="false">Comenzar</string>
+    <string name="btn_register" translatable="false">Ya tengo una cuenta</string>
+    <string name="txt_continue" translatable="false">- O continuar con -</string>
     <string name="language_code_spanish" translatable="false">es</string>
     <string name="language_code_english" translatable="false">en</string>
     <string name="flag_spain" translatable="false">flag_ic_spain</string>
     <string name="flag_us" translatable="false">flag_ic_us</string>
-
-
+    <string name="string_continue" translatable="false">- O continua con -</string>
+    <string name="btn_share" translatable="false">Compartir</string>
+    <string name="btn_upload" translatable="false">Subir</string>
+    <string name="btn_cancel" translatable="false">Cancelar</string>
+    <string name="btn_save" translatable="false">Guardar</string>
+    <string name="btn_delete" translatable="false">Eliminar</string>
+    <string name="btn_edit" translatable="false">Editar</string>
+    <string name="btn_close" translatable="false">Cerrar</string>
+    <string name="btn_ok" translatable="false">Aceptar</string>
+    <string name="btn_cancel_delete" translatable="false">Cancelar</string>
+    <string name="btn_delete_confirm" translatable="false">Eliminar</string>
+    <string name="btn_edit_confirm" translatable="false">Editar</string>
+    <string name="btn_save_confirm" translatable="false">Guardar</string>
+    <string name="btn_share_confirm" translatable="false">Compartir</string>
+    <string name="btn_upload_confirm" translatable="false">Subir</string>
+    <string name="btn_close_confirm" translatable="false">Cerrar</string>
+    <string name="btn_ok_confirm" translatable="false">Aceptar</string>
+    <string name="btn_cancel_confirm" translatable="false">Cancelar</string>
+    <string name="btn_cancel_edit" translatable="false">Cancelar</string>
+    <string name="btn_save_edit" translatable="false">Guardar</string>
+    <string name="btn_cancel_share" translatable="false">Cancelar</string>
+    <string name="btn_upload_edit" translatable="false">Subir</string>
+    <string name="btn_close_edit" translatable="false">Cerrar</string>
+    <string name="btn_ok_edit" translatable="false">Aceptar</string>
+    <string name="btn_cancel_upload" translatable="false">Cancelar</string>
+    <string name="btn_upload_confirm" translatable="false">Subir</string>
+    <string name="btn_close_upload" translatable="false">Cerrar</string>
+    <string name="btn_ok_upload" translatable="false">Aceptar</string>
 </resources>

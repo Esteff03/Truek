@@ -95,7 +95,6 @@
         <item name="android:padding">10dp</item>
     </style>
 
-
     <!--ESTILO CAMPO DE TEXTO "USUAR" DEL CREATE ACCOUNT-->
     <style name="createacount_edittext_User_style">
         <item name="android:layout_width">0dp</item>
@@ -114,8 +113,4 @@
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:translationY">-140dp</item>
     </style>
-
-
-
-
 </resources>
