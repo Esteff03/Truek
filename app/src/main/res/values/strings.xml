@@ -25,4 +25,14 @@
     <string name="btn_delete" translatable="false">Eliminar</string>
     <string name="btn_edit" translatable="false">Editar</string>
 
+    <!--Strings profile-->
+    <string name="full_name" translatable="false">Nombre de usuario</string>
+    <string name="payment_desc" translatable="false">Wallet</string>
+    <string name="name" translatable="false">Nombre de usuario</string>
+    <string name="adress" translatable="false">Calle, número, CP</string>
+    <string name="tl" translatable="false">+34 655 55 55 55</string>
+    <string name="btnUpdate" translatable="false">Actualizar</string>
+    <string name="btnSave" translatable="false">Guardar</string>
+    <string name="booking_desc" translatable="false">Divisa</string>
+
 </resources>
