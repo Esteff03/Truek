@@ -18,6 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <include
+
             layout="@layout/toolbar_categoria"
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
