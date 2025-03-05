@@ -9,7 +9,7 @@
     <string name="next" translatable="false">Siguiente</string>
     <string name="cancel" translatable="false">Cancelar</string>
 
-    <!--Strings del activity_main_view  -->
+    <!--Strings del activity_main_view   -->
     <string name="btn_start" translatable="false">Comenzar</string>
     <string name="btn_register" translatable="false">Ya tengo una cuenta</string>
     <string name="txt_continue" translatable="false">- O continuar con -</string>
