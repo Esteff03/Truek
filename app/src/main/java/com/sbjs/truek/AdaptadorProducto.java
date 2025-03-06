@@ -33,20 +33,22 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Producto producto = productoList.get(position);
-        holder.name.setText(producto.getName());
-        holder.price.setText("€" + producto.getPrice());
-        holder.description.setText(producto.getDescription());
+        holder.name.setText(producto.getNombre());
+        holder.price.setText("€" + producto.getPrecio());
 
-        if (!producto.getImageUrl().isEmpty()) {
+        // Verificar si la URL no está vacía y tiene un formato válido
+        if (producto.getImagenUrl() != null && !producto.getImagenUrl().trim().isEmpty()) {
             Glide.with(context)
-                    .load(producto.getImageUrl())
-                    .placeholder(R.drawable.rounded_image) // Imagen por defecto mientras carga
+                    .load(producto.getImagenUrl())
+                    .placeholder(R.drawable.rounded_image) // Imagen temporal mientras carga
                     .error(R.drawable.ic_heart) // Imagen en caso de error
                     .into(holder.image);
         } else {
+            // Si la URL está vacía, usa una imagen por defecto
             holder.image.setImageResource(R.drawable.rounded_image);
         }
     }
+
 
     @Override
     public int getItemCount() {
@@ -54,14 +56,13 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
     }
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
-        TextView name, price, description;
+        TextView name, price;
         ImageView image;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.product_name);
-            price = itemView.findViewById(R.id.producto_price);
-            description = itemView.findViewById(R.id.product_description);
+            price = itemView.findViewById(R.id.product_price);
             image = itemView.findViewById(R.id.product_image);
         }
     }

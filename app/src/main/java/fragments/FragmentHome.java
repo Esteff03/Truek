@@ -50,10 +50,10 @@ public class FragmentHome extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_productos);
         tvNoData = view.findViewById(R.id.tv_no_data);
         productList = new ArrayList<>();
-        adapter = new AdaptadorProducto(getContext(), productList);
+        adapter = new AdaptadorProducto(requireContext(), productList);
 
-        // Configurar GridLayout para mostrar productos en 2 columnas
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        // Configurar GridLayoutManager para mostrar productos en 2 columnas
+        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         recyclerView.setAdapter(adapter);
 
         fetchProductsFromSupabase();
@@ -62,52 +62,86 @@ public class FragmentHome extends Fragment {
 
     private void fetchProductsFromSupabase() {
         new Thread(() -> {
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(SUPABASE_URL)
-                    .header("apikey", SUPABASE_API_KEY)
-                    .header("Authorization", "Bearer " + SUPABASE_API_KEY)
-                    .header("Content-Type", "application/json")
-                    .build();
-
             try {
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url(SUPABASE_URL)
+                        .header("apikey", SUPABASE_API_KEY)
+                        .header("Authorization", "Bearer " + SUPABASE_API_KEY)
+                        .header("Content-Type", "application/json")
+                        .build();
+
                 Response response = client.newCall(request).execute();
-                String responseBody = response.body() != null ? response.body().string() : "Respuesta vacía";
-
-                Log.d("SupabaseResponse", "Respuesta completa de Supabase: " + responseBody);
-
-                if (response.isSuccessful() && !responseBody.equals("[]")) {
-                    JSONArray jsonArray = new JSONArray(responseBody);
-
-                    List<Producto> tempList = new ArrayList<>();
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String name = jsonObject.optString("name", "Sin nombre");
-                        String price = jsonObject.optString("price", "0");
-                        String description = jsonObject.optString("description", "Sin descripción");
-                        String imageUrl = jsonObject.optString("image_url", "");
-
-                        Log.d("ProductData", "Producto: " + name + ", Precio: " + price + ", Imagen: " + imageUrl);
-
-                        tempList.add(new Producto(name, price, description, imageUrl));
-                    }
-
-                    getActivity().runOnUiThread(() -> {
-                        productList.clear();
-                        productList.addAll(tempList);
-                        adapter.notifyDataSetChanged();
-
-                        tvNoData.setVisibility(productList.isEmpty() ? View.VISIBLE : View.GONE);
-                    });
-
-                } else {
-                    Log.e("SupabaseResponse", "Error en la petición o no hay productos: " + response.message());
+                if (response.body() == null) {
+                    Log.e("SupabaseError", "La respuesta de Supabase es nula");
+                    updateUIWithNoData();
+                    return;
                 }
+
+                String responseBody = response.body().string();
+                Log.d("SupabaseResponse", "Respuesta de Supabase: " + responseBody);
+
+                if (!response.isSuccessful()) {
+                    Log.e("SupabaseError", "Error en la petición. Código: " + response.code());
+                    updateUIWithNoData();
+                    return;
+                }
+
+                JSONArray jsonArray = new JSONArray(responseBody);
+                if (jsonArray.length() == 0) {
+                    Log.e("SupabaseError", "La respuesta de Supabase está vacía.");
+                    updateUIWithNoData();
+                    return;
+                }
+
+                List<Producto> tempList = new ArrayList<>();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                    // Extraer valores del JSON
+                    String name = jsonObject.optString("name", "Sin nombre");
+                    String price = jsonObject.optString("price", "0");
+                    String description = jsonObject.optString("description", "Sin descripción");
+                    String imageUrl = jsonObject.optString("image_url", ""); // URL de la base de datos
+
+                    // Validar si la URL ya es completa o si necesita el prefijo
+                    if (!imageUrl.startsWith("https://")) {
+                        String baseUrl = "https://pgosafydlwskwtvnuokk.supabase.co/storage/v1/object/public/Imagenes_1/";
+                        imageUrl = baseUrl + imageUrl;
+                    }
+                    Log.d("ProductData", "Producto: " + name + ", Precio: " + price + ", Imagen URL: " + imageUrl);
+
+                    tempList.add(new Producto(name, price, description, imageUrl));
+                }
+
+                updateUIWithProducts(tempList);
+
             } catch (IOException | JSONException e) {
-                e.printStackTrace();
                 Log.e("SupabaseError", "Error al obtener los productos", e);
+                updateUIWithNoData();
             }
         }).start();
     }
 
+
+    private void updateUIWithProducts(List<Producto> products) {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(() -> {
+                productList.clear();
+                productList.addAll(products);
+                adapter.notifyDataSetChanged();
+                tvNoData.setVisibility(productList.isEmpty() ? View.VISIBLE : View.GONE);
+            });
+        }
+    }
+
+    private void updateUIWithNoData() {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(() -> {
+                productList.clear();
+                adapter.notifyDataSetChanged();
+                tvNoData.setVisibility(View.VISIBLE);
+            });
+        }
+    }
 }
