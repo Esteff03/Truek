@@ -1,20 +1,31 @@
 package com.sbjs.truek;
 
 public class Producto {
-    private String name;
-    private String price;
-    private String description;
-    private String imageUrl;
+    private String nombre;
+    private String precio;
+    private String descripcion;
+    private String imagenUrl;
 
-    public Producto(String name, String price, String description, String imageUrl) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.imageUrl = imageUrl;
+    public Producto(String nombre, String precio, String descripcion, String imagenUrl) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.descripcion = descripcion;
+        this.imagenUrl = imagenUrl;
     }
 
-    public String getName() { return name; }
-    public String getPrice() { return price; }
-    public String getDescription() { return description; }
-    public String getImageUrl() { return imageUrl; }
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getPrecio() {
+        return precio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
 }
