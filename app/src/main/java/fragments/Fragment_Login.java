@@ -1,6 +1,7 @@
 package fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.content.Intent;
@@ -85,6 +86,17 @@ public class Fragment_Login extends Fragment {
                 String responseBody = response.body() != null ? response.body().string() : "";
 
                 if (response.isSuccessful()) {
+                    JSONObject jsonResponse = new JSONObject(responseBody);
+                    String token = jsonResponse.getString("access_token");
+
+                    // 🔹 Guardamos el JWT en SharedPreferences
+                    SharedPreferences sharedPreferences = getContext().getSharedPreferences("auth", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("jwt", token);
+                    editor.apply();
+
+                    Log.d("Fragment_Login", "✅ JWT guardado en SharedPreferences: " + token);
+
                     getActivity().runOnUiThread(() -> {
                         Toast.makeText(getContext(), "¡Inicio de sesión exitoso!", Toast.LENGTH_SHORT).show();
                         openMainActivity();
@@ -101,6 +113,7 @@ public class Fragment_Login extends Fragment {
             }
         }).start();
     }
+
 
     private boolean validateInputs() {
         String email = emailEditText.getText().toString().trim();

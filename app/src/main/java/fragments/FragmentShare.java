@@ -1,6 +1,6 @@
 package fragments;
 
-import static android.app.ProgressDialog.show;
+
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -116,6 +116,17 @@ public class FragmentShare extends Fragment {
         // Subir el producto
         uploadButton.setOnClickListener(v -> uploadImage());
 
+        // Comprobación de JWT en SharedPreferences
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("auth", Context.MODE_PRIVATE);
+        String jwt = sharedPreferences.getString("jwt", null);
+
+        if (jwt == null) {
+            Log.e("AuthError", "⚠️ No se encontró el JWT en SharedPreferences. El usuario no está autenticado.");
+        } else {
+            Log.d("AuthSuccess", "✅ JWT encontrado: " + jwt);
+        }
+
+
         return view;
     }
 
@@ -210,11 +221,14 @@ public class FragmentShare extends Fragment {
     }
 
     // Enviar la imagen a Supabase
+    // Enviar la imagen a Supabase
     private void sendToSupabase(byte[] imageBytes) {
-        String filename = "imagen_" + System.currentTimeMillis() + ".jpg";  // Asumiendo que es JPG
+        String filename = "imagen_" + System.currentTimeMillis() + ".jpg";
         String url = SUPABASE_URL + "/storage/v1/object/" + BUCKET_NAME + "/" + filename;
 
-        // Realiza la solicitud PUT a Supabase con el contenido de la imagen
+
+        Log.d("SupabaseUpload", "📤 Intentando subir imagen a: " + url);
+
         RequestBody body = RequestBody.create(imageBytes, MediaType.parse("image/jpeg"));
 
         Request request = new Request.Builder()
@@ -230,70 +244,61 @@ public class FragmentShare extends Fragment {
                 Response response = client.newCall(request).execute();
                 if (response.isSuccessful()) {
                     String imageUrl = SUPABASE_URL + "/storage/v1/object/" + BUCKET_NAME + "/" + filename;
+                    Log.d("SupabaseUpload", "✅ Imagen subida con éxito. URL: " + imageUrl);
                     saveProductToDatabase(imageUrl);
-                    Toast.makeText(getActivity(), "Imagen subida correctamente", Toast.LENGTH_SHORT).show();
-                    resetFields();
+                    showToast("Imagen subida correctamente.");
                 } else {
-                    getActivity().runOnUiThread(() -> {
-                        Toast.makeText(getActivity(), "Error al subir imagen: " + response.message(), Toast.LENGTH_SHORT).show();
-                    });
+                    // Obtener mensaje de error detallado
+                    String errorMessage = response.body() != null ? response.body().string() : "Error desconocido";
+                    Log.e("SupabaseError", "⚠️ Error al subir imagen. Código: " + response.code() + " - " + errorMessage);
+                    showToast("Error al subir imagen: " + errorMessage);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                getActivity().runOnUiThread(() -> {
-                    Toast.makeText(getActivity(), "Error de conexión", Toast.LENGTH_SHORT).show();
-                });
+                Log.e("SupabaseError", "⚠️ Error de conexión con Supabase: " + e.getMessage());
+                showToast("Error de conexión con Supabase.");
             }
         }).start();
     }
 
-    // Guardar el producto con la URL de la imagen en la base de datos de Supabase
+
+    // Guardar el producto en Supabase
     private void saveProductToDatabase(String imageUrl) {
-        // Para obtener el JWT guardado en SharedPreferences
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("auth", Context.MODE_PRIVATE);
-        String jwt = sharedPreferences.getString("jwt", null);  // null es el valor por defecto si no está presente
+        String jwt = sharedPreferences.getString("jwt", null);
+
         if (jwt == null) {
-            Toast.makeText(getActivity(), "No se ha autenticado el usuario.", Toast.LENGTH_SHORT).show();
+            Log.e("SupabaseError", "⚠️ No se encontró el JWT. No se puede autenticar el usuario.");
+            getActivity().runOnUiThread(() ->
+                    Toast.makeText(getActivity(), "Error: No se ha autenticado el usuario.", Toast.LENGTH_SHORT).show()
+            );
             return;
         }
 
-        Log.d("JSON", "Datos del jwt: "+ jwt);
+        String name = productName.getText().toString().trim();
+        String description = productDescription.getText().toString().trim();
+        String price = productPrice.getText().toString().trim();
 
-        // Decodificar el JWT para obtener el user_id (sub)
-        String[] jwtParts = jwt.split("\\.");
-        if (jwtParts.length != 3) {
-            Toast.makeText(getActivity(), "JWT inválido.", Toast.LENGTH_SHORT).show();
+        if (name.isEmpty() || price.isEmpty() || description.isEmpty()) {
+            getActivity().runOnUiThread(() ->
+                    Toast.makeText(getActivity(), "Error: Todos los campos son obligatorios.", Toast.LENGTH_SHORT).show()
+            );
             return;
         }
 
-        // Decodificar el payload (el segundo segmento del JWT)
-        String payload = new String(Base64.decode(jwtParts[1], Base64.URL_SAFE));
-        String userId;
+        JSONObject jsonObject = new JSONObject();
         try {
-            JSONObject payloadJson = new JSONObject(payload);
-            userId = payloadJson.getString("sub"); // "sub" contiene el user_id en Supabase
+            jsonObject.put("name", name);
+            jsonObject.put("price", price);
+            jsonObject.put("description", description);
+            jsonObject.put("image_url", imageUrl);
         } catch (JSONException e) {
             e.printStackTrace();
-            Toast.makeText(getActivity(), "Error al decodificar el JWT.", Toast.LENGTH_SHORT).show();
+            Log.e("SupabaseError", "⚠️ Error al crear el JSON.");
             return;
         }
 
-        String name = productName.getText().toString();
-        String description = productDescription.getText().toString();
-        String price = productPrice.getText().toString();
-
-        // Crear el JSON incluyendo el user_id
-        String json = "{" +
-                "\"name\": \"" + name + "\"," +
-                "\"price\": " + price + "," +
-                "\"description\": \"" + description + "\"," +
-                "\"image_url\": \"" + imageUrl + "\"," +
-                "\"user_id\": \"" + userId + "\"" +  // Agregar el user_id al JSON
-                "}";
-
-        Log.d("JSON", "Datos del producto: " + json);
-
-        RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
+        RequestBody body = RequestBody.create(jsonObject.toString(), MediaType.parse("application/json"));
         Request request = new Request.Builder()
                 .url(SUPABASE_URL + "/rest/v1/products")
                 .header("Authorization", "Bearer " + jwt)
@@ -302,36 +307,37 @@ public class FragmentShare extends Fragment {
                 .post(body)
                 .build();
 
-        Log.d("Headers", "Authorization: Bearer " + jwt);
-        Log.d("Headers", "apikey: " + SUPABASE_API_KEY);
-        Log.d("URL", SUPABASE_URL + "/rest/v1/products");
-
         OkHttpClient client = new OkHttpClient();
         new Thread(() -> {
             try {
                 Response response = client.newCall(request).execute();
                 if (response.isSuccessful()) {
-                    getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), "Producto subido con éxito", Toast.LENGTH_SHORT).show());
-                    resetFields();
-                    openMain();
-                } else {
-                    // Log de mensaje de error real desde la respuesta
-                    String errorMessage = response.body() != null ? response.body().string() : "Error desconocido";
-                    Log.e("UploadError", "Error al subir producto: " + response.message() + " - " + errorMessage);
                     getActivity().runOnUiThread(() -> {
-                        Toast.makeText(getActivity(), "Error al subir imagen: " + response.message(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Producto subido con éxito.", Toast.LENGTH_SHORT).show();
+                        resetFields();
+                        openMain();
                     });
+                } else {
+                    String errorMessage = response.body() != null ? response.body().string() : "Error desconocido";
+                    Log.e("SupabaseError", "⚠️ Error al subir producto: " + response.message() + " - " + errorMessage);
+                    getActivity().runOnUiThread(() ->
+                            Toast.makeText(getActivity(), "Error al subir producto: " + response.message(), Toast.LENGTH_SHORT).show()
+                    );
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                getActivity().runOnUiThread(() ->
+                        Toast.makeText(getActivity(), "Error de conexión con Supabase.", Toast.LENGTH_SHORT).show()
+                );
             }
         }).start();
     }
 
+
     // Método para limpiar los campos después de subir la imagen
     private void resetFields() {
         imageUri = null;
-        imageView.setImageResource(R.drawable.rounded_image); // Reemplaza con un icono predeterminado
+        imageView.setImageResource(R.drawable.rounded_image);
         productName.setText("");
         productPrice.setText("");
         productDescription.setText("");
@@ -340,8 +346,13 @@ public class FragmentShare extends Fragment {
     private void openMain() {
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
-        // Animación de transición opcional
         getActivity().overridePendingTransition(R.anim.anim_rigth_left, android.R.anim.fade_in);
     }
 
+    // Método para mostrar Toast en el hilo principal
+    private void showToast(String message) {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(() -> Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show());
+        }
+    }
 }
