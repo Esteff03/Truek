@@ -28,9 +28,7 @@ import okhttp3.Response;
 import org.json.JSONObject;
 
 public class Fragment_Login extends Fragment {
-    // URL completa para el login en Supabase
     private static final String SUPABASE_URL = "https://pgosafydlwskwtvnuokk.supabase.co/auth/v1/token?grant_type=password";
-    // Tu clave pública real
     private static final String SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnb3NhZnlkbHdza3d0dm51b2trIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MzgyMTcsImV4cCI6MjA1NTAxNDIxN30.EmB_NLAqXji3UhtgaQsc4VmGrtnUHQlNiAb6Oau3fQo";
 
     private EditText emailEditText, passwordEditText;
@@ -89,13 +87,13 @@ public class Fragment_Login extends Fragment {
                     JSONObject jsonResponse = new JSONObject(responseBody);
                     String token = jsonResponse.getString("access_token");
 
-                    // 🔹 Guardamos el JWT en SharedPreferences
+                    //Guardamos el JWT en SharedPreferences
                     SharedPreferences sharedPreferences = getContext().getSharedPreferences("auth", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("jwt", token);
                     editor.apply();
 
-                    Log.d("Fragment_Login", "✅ JWT guardado en SharedPreferences: " + token);
+                    Log.d("Fragment_Login", "JWT guardado en SharedPreferences: " + token);
 
                     getActivity().runOnUiThread(() -> {
                         Toast.makeText(getContext(), "¡Inicio de sesión exitoso!", Toast.LENGTH_SHORT).show();
