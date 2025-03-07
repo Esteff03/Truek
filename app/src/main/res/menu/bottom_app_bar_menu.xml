@@ -8,7 +8,7 @@
     <item
         android:id="@+id/heart"
         android:icon="@drawable/bottom_hearticon"
-        android:title="Heart"/>
+        android:title="Shop"/>
     <item
         android:id="@+id/share"
         android:icon="@drawable/bottom_shareicon"
