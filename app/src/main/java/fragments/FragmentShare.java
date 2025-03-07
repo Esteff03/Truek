@@ -274,6 +274,27 @@ public class FragmentShare extends Fragment {
             return;
         }
 
+        // ✅ Extraer el user_id desde el JWT
+        String userId;
+        try {
+            String[] jwtParts = jwt.split("\\.");
+            if (jwtParts.length != 3) {
+                throw new IllegalArgumentException("JWT inválido");
+            }
+
+            // Decodificar el payload del JWT
+            String payload = new String(Base64.decode(jwtParts[1], Base64.URL_SAFE), "UTF-8");
+            JSONObject payloadJson = new JSONObject(payload);
+            userId = payloadJson.getString("sub"); // `sub` contiene el UUID del usuario
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("SupabaseError", "⚠️ Error al decodificar el JWT.");
+            getActivity().runOnUiThread(() ->
+                    Toast.makeText(getActivity(), "Error al obtener el user_id.", Toast.LENGTH_SHORT).show()
+            );
+            return;
+        }
+
         String name = productName.getText().toString().trim();
         String description = productDescription.getText().toString().trim();
         String price = productPrice.getText().toString().trim();
@@ -285,12 +306,15 @@ public class FragmentShare extends Fragment {
             return;
         }
 
+        // ✅ Enviar user_id correcto (UUID del JWT)
         JSONObject jsonObject = new JSONObject();
         try {
+            jsonObject.put("id", java.util.UUID.randomUUID().toString()); // Generar UUID en Android
             jsonObject.put("name", name);
             jsonObject.put("price", price);
             jsonObject.put("description", description);
             jsonObject.put("image_url", imageUrl);
+            jsonObject.put("user_id", userId); // UUID real del usuario
         } catch (JSONException e) {
             e.printStackTrace();
             Log.e("SupabaseError", "Error al crear el JSON.");
@@ -331,6 +355,8 @@ public class FragmentShare extends Fragment {
             }
         }).start();
     }
+
+
 
 
     // Método para limpiar los campos después de subir la imagen
