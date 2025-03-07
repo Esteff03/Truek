@@ -1,10 +1,13 @@
 package fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +16,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sbjs.truek.AdaptadorProducto;
+import com.sbjs.truek.Categories;
+import com.sbjs.truek.Notifications;
 import com.sbjs.truek.Producto;
 import com.sbjs.truek.R;
 
@@ -37,6 +43,8 @@ public class FragmentHome extends Fragment {
     private AdaptadorProducto adapter;
     private List<Producto> productList;
     private TextView tvNoData;
+    private Button categorias, favoritos;
+    private ImageView notificaciones;
 
     public FragmentHome() {
         // Constructor vacío requerido
@@ -51,6 +59,45 @@ public class FragmentHome extends Fragment {
         tvNoData = view.findViewById(R.id.tv_no_data);
         productList = new ArrayList<>();
         adapter = new AdaptadorProducto(requireContext(), productList);
+
+        categorias = view.findViewById(R.id.button1);
+        favoritos = view.findViewById(R.id.button2);
+        notificaciones = view.findViewById(R.id.message);
+
+        categorias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Categories.class);
+                startActivity(intent);
+            }
+        });
+
+        favoritos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentGuardado fragmentGuardado = new FragmentGuardado();
+
+                // Reemplaza el fragmento
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, fragmentGuardado)
+                        .addToBackStack(null)
+                        .commit();
+
+                // 🔹 Cambia la selección del BottomNavigationView
+                BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottom_nav_bar);
+                bottomNavigationView.setSelectedItemId(R.id.heart); // ID del botón de favoritos en el navbar
+            }
+        });
+
+        notificaciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Notifications.class);
+                startActivity(intent);
+            }
+        });
+
 
         // Configurar GridLayoutManager para mostrar productos en 2 columnas
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
