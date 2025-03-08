@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,7 +44,7 @@ public class FragmentHome extends Fragment {
     private AdaptadorProducto adapter;
     private List<Producto> productList;
     private TextView tvNoData;
-    private Button categorias, favoritos;
+    private Button categorias, favoritos, modifyComprar;
     private ImageView notificaciones;
 
     public FragmentHome() {
@@ -63,6 +64,7 @@ public class FragmentHome extends Fragment {
         categorias = view.findViewById(R.id.button1);
         favoritos = view.findViewById(R.id.button2);
         notificaciones = view.findViewById(R.id.message);
+
 
         categorias.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +92,8 @@ public class FragmentHome extends Fragment {
             }
         });
 
+
+
         notificaciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +101,7 @@ public class FragmentHome extends Fragment {
                 startActivity(intent);
             }
         });
+
 
 
         // Configurar GridLayoutManager para mostrar productos en 2 columnas
@@ -191,4 +196,6 @@ public class FragmentHome extends Fragment {
             });
         }
     }
+
+
 }

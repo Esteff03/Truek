@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,6 +72,33 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
                 holder.favIcon.setImageResource(R.drawable.ic_heart); // Ícono lleno
             }
         });
+
+        holder.buyButton.setOnClickListener(v -> {
+            // Obtener el saldo actual del monedero
+            float currentBalance = getWalletBalance(context);
+
+            // Precio del producto
+            float productPrice = Float.parseFloat(producto.getPrecio().replace("€", ""));
+
+            // Verificar si hay suficiente saldo
+            if (currentBalance >= productPrice) {
+                // Restar el precio del producto del saldo
+                float newBalance = currentBalance - productPrice;
+
+                // Actualizar el saldo en SharedPreferences
+                saveWalletBalance(context, newBalance);
+
+                // Incrementar el contador de compras
+                incrementPurchaseCount(context);
+
+                // Mostrar mensaje de éxito
+                Toast.makeText(context, "Producto comprado: " + producto.getNombre(), Toast.LENGTH_SHORT).show();
+            } else {
+                // Si no hay suficiente saldo, mostrar mensaje de error
+                Toast.makeText(context, "Saldo insuficiente para comprar el producto.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -80,7 +108,7 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView name, price;
-        ImageView image, favIcon; // 🔹 Agregamos favIcon
+        ImageView image, favIcon,buyButton; // 🔹 Agregamos favIcon
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -88,6 +116,7 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
             price = itemView.findViewById(R.id.product_price);
             image = itemView.findViewById(R.id.product_image);
             favIcon = itemView.findViewById(R.id.heart); // Asegúrate de que este ID exista en tu XML
+            buyButton = itemView.findViewById(R.id.buy); // Añadido el ID del botón "buy"
         }
     }
 
@@ -137,5 +166,35 @@ public class AdaptadorProducto extends RecyclerView.Adapter<AdaptadorProducto.Pr
             }
         }
         return false;
+    }
+
+    // Función para guardar el saldo del monedero en SharedPreferences
+    public void saveWalletBalance(Context context, float balance) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("profile", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putFloat("wallet_balance", balance);
+        editor.apply();
+    }
+
+    // Función para obtener el saldo del monedero
+    public float getWalletBalance(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("profile", Context.MODE_PRIVATE);
+        return sharedPreferences.getFloat("wallet_balance", 0.0f); // Retorna 0.0 si no se encuentra el saldo
+    }
+
+    // Función para obtener el contador de compras
+    public int getPurchaseCount(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("profile", Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("purchase_count", 0); // Retorna 0 si no se encuentra el contador
+    }
+
+    // Función para incrementar el contador de compras
+    public void incrementPurchaseCount(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("profile", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        int currentCount = getPurchaseCount(context);
+        editor.putInt("purchase_count", currentCount + 1);  // Incrementa el contador
+        editor.apply();  // Aplica el cambio
     }
 }
