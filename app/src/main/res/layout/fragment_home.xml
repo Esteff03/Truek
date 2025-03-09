@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="8dp">
 
         <!-- Toolbar -->
         <include
@@ -19,27 +20,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <!-- Mensaje si no hay productos -->
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No hay productos disponibles en este momento."
+            android:gravity="center"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:padding="16dp"
+            android:textColor="@android:color/black" />
+
+        <!-- RecyclerView con margen top para evitar que la Toolbar lo cubra -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_productos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2" />
     </LinearLayout>
-
-    <!-- Mensaje si no hay productos -->
-    <TextView
-        android:id="@+id/tv_no_data"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="No hay productos disponibles en este momento."
-        android:gravity="center"
-        android:textSize="16sp"
-        android:visibility="gone"/>
-
-    <!-- RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_productos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:padding="8dp"
-        android:translationY="100dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2" />
 
 </FrameLayout>
