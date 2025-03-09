@@ -6,30 +6,34 @@
     android:background="@color/colorFondo"
     tools:context="fragments.FragmentGuardado">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/layout_toolbar"
+        <!-- Toolbar -->
+        <include
+            layout="@layout/toolbar_favoritos"
+            android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content" />
 
-            <include
-                layout="@layout/toolbar_favoritos"
-                android:id="@+id/toolbar_main"
+        <!-- SwipeRefreshLayout para refrescar favoritos -->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- RecyclerView para mostrar los productos guardados -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_favoritos"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <!-- RecyclerView debajo de la Toolbar usando layout_below-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_favoritos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/layout_toolbar" />
-    </RelativeLayout>
-
+    </LinearLayout>
 
 </FrameLayout>

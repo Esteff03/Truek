@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ public class FragmentGuardado extends Fragment {
     private RecyclerView recyclerFavoritos;
     private AdaptadorProducto adapter;
     private List<Producto> productList;
+    private SwipeRefreshLayout swipeRefreshLayout; // 🔹 Agregado para Refresh
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class FragmentGuardado extends Fragment {
         recyclerFavoritos.setLayoutManager(new GridLayoutManager(requireContext(), 2));
         recyclerFavoritos.setHasFixedSize(true);
 
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh); //
         ImageView back = view.findViewById(R.id.arrow_back);
         back.setOnClickListener(v -> {
             if (getActivity() != null) {
@@ -58,6 +61,12 @@ public class FragmentGuardado extends Fragment {
 
         // Cargar favoritos al abrir el fragmento
         loadFavorites();
+
+        // 🔹 Configurar SwipeRefreshLayout
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            loadFavorites();  // Recargar la lista de favoritos
+            swipeRefreshLayout.setRefreshing(false); // Detener la animación
+        });
 
         return view;
     }
