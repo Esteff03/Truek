@@ -198,7 +198,6 @@
                             android:text="+34 655 55 55 55"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
-
                     <!-- Botones de actualización y guardado -->
                     <Button
                         android:id="@+id/btnUpdate"

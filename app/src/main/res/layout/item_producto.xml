@@ -37,6 +37,8 @@
             android:id="@+id/buy"
             android:layout_width="22dp"
             android:layout_height="22dp"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/ic_buy"
             android:layout_marginRight="8dp"/>
 
