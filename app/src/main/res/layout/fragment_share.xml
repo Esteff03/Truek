@@ -36,27 +36,14 @@
             <!-- Botón de Cámara -->
             <Button
                 android:id="@+id/cameraButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Cámara"
-                android:textColor="@android:color/white"
-                android:background="@android:color/holo_blue_dark"
-                android:drawableStart="@android:drawable/ic_menu_camera"
-                android:padding="12dp"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="Abrir cámara" />
+                style="@style/btn_share_camera" />
 
             <!-- Botón de Galería -->
             <Button
                 android:id="@+id/galleryButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Galería"
-                android:textColor="@android:color/white"
-                android:background="@android:color/holo_orange_dark"
-                android:drawableStart="@android:drawable/ic_menu_gallery"
-                android:padding="12dp"
-                android:contentDescription="Abrir galería" />
+                style="@style/btn_share_galeria" />
 
         </LinearLayout>
 
@@ -94,13 +81,7 @@
 
         <Button
             android:id="@+id/uploadProductButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="SUBIR PRODUCTO"
-            android:textColor="@android:color/white"
-            android:background="@android:color/holo_green_dark"
-            android:padding="16dp"
-            android:layout_marginTop="24dp"
-            android:contentDescription="Subir producto" />
+            style="@style/btn_share_upload" />
     </LinearLayout>
 </FrameLayout>
