@@ -120,7 +120,7 @@ Button modifyComprar = findViewById(R.id.btnComprar);  // Botón de compra
 
 
 🎉 🎉 🎉 
-##Aplicación finalizada:## 🎉 
+##Aplicación finalizada:## 😎😎😎
 
 
 <div style="display: flex; justify-content: center;">
@@ -131,10 +131,11 @@ Button modifyComprar = findViewById(R.id.btnComprar);  // Botón de compra
 </div>
 
 
+<div style="display: flex; justify-content: center;">
+  <img src="https://github.com/user-attachments/assets/cf17aff8-38ee-4c8b-b1c6-8ac8cc0218cb" width="200" style="margin-right: 10px;"/>
+  <img src="https://github.com/user-attachments/assets/ed978a8a-d698-4db9-a19f-f9da3ca5d8d4" width="200" />
+</div>
 
-![image](https://github.com/user-attachments/assets/cf17aff8-38ee-4c8b-b1c6-8ac8cc0218cb)
-
-![image](https://github.com/user-attachments/assets/ed978a8a-d698-4db9-a19f-f9da3ca5d8d4)
 
 
 Roles de desarrollo:  
