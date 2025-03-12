@@ -61,10 +61,13 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 *Splash*
 
-![image](https://github.com/user-attachments/assets/fe36a831-5744-4783-b0a8-a6b3f70678cb)
+
+<div style="display: flex; justify-content: center;">
+  <img src="https://github.com/user-attachments/assets/fe36a831-5744-4783-b0a8-a6b3f70678cb" width="200" style="margin-right: 10px;"/>
+  <img src="https://github.com/user-attachments/assets/6f0e9065-7cea-44ec-a313-1db72baa34e9" width="200" />
+</div>
 
 
-![image](https://github.com/user-attachments/assets/6f0e9065-7cea-44ec-a313-1db72baa34e9)
 
 
 
