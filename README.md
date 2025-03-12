@@ -15,13 +15,11 @@ Aplicación móvil para intercambio de productos o servicios, sin la necesidad d
 
 *Splash*
 
+<div style="display: flex; justify-content: center;">
+  <img src="https://github.com/user-attachments/assets/294b8039-f587-44d9-bef3-6896ec8cdf32" width="200" style="margin-right: 10px;"/>
+  <img src="https://github.com/user-attachments/assets/5b278731-dc9d-45d4-8e8a-dc8a3826aed9" width="200" />
+</div>
 
-![image](https://github.com/user-attachments/assets/294b8039-f587-44d9-bef3-6896ec8cdf32)
-
-
-
-
-![image](https://github.com/user-attachments/assets/5b278731-dc9d-45d4-8e8a-dc8a3826aed9)
 
 
 
@@ -29,7 +27,7 @@ Aplicación móvil para intercambio de productos o servicios, sin la necesidad d
 
 
 El objetivo es fomentar una economía colaborativa donde las personas puedan satisfacer sus necesidades, reducir el
-desperdicio y reutilizar recursos, todo a través del intercambio justo.
+desperdicio y reutilizar recursos, todo a través del intercambio justo.🎉 🎉 🎉 
 
 
 
