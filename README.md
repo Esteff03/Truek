@@ -111,17 +111,15 @@ Button modifyComprar = findViewById(R.id.btnComprar);  // Botón de compra
         });
 
 
-*Main*
+*Main* +  *Menú AppBar*
+
+<div style="display: flex; justify-content: center;">
+  <img src="https://github.com/user-attachments/assets/ef54629b-3702-422f-9c41-6bbe28247c40" width="200" style="margin-right: 10px;"/>
+  <img src="https://github.com/user-attachments/assets/c06befa0-417e-43ad-94c9-436fac257571" width="200" />
+</div>
 
 
-![image](https://github.com/user-attachments/assets/ef54629b-3702-422f-9c41-6bbe28247c40)
 
-
-*Menú AppBar*
-
-
-
-![toolbarnav](https://github.com/user-attachments/assets/c06befa0-417e-43ad-94c9-436fac257571)
 
 
 Aplicaciçon finalizada: 
