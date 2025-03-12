@@ -30,7 +30,7 @@ public class FragmentProfile extends Fragment {
 
 
     public FragmentProfile() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -38,6 +38,7 @@ public class FragmentProfile extends Fragment {
         super.onCreate(savedInstanceState);
         // Aquí puedes agregar código de inicialización si es necesario.
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +54,12 @@ public class FragmentProfile extends Fragment {
         payment = view.findViewById(R.id.payment);
         purchaseCount = view.findViewById(R.id.exchange);  // Añadir TextView para mostrar el contador de compras
         // Verificar si el saldo ya ha sido guardado, si no, establecerlo a 20 euros
+
+        // Cargar los datos guardados en SharedPreferences
+        loadProfileData(getContext());
+
         float currentBalance = getWalletBalance(getContext());
+
         if (currentBalance == 0.0f) {
             setInitialBalance(getContext(), 20.0f);  // Establece el saldo inicial de 20 euros
             currentBalance = 20.0f;  // Actualiza el saldo local
@@ -68,7 +74,7 @@ public class FragmentProfile extends Fragment {
 
 
         // Botón para modificar la información
-        Button modifyButton = view.findViewById(R.id.btnSave);  // Asegúrate de usar el ID correcto
+        Button modifyButton = view.findViewById(R.id.btnUpdate);  // Asegúrate de usar el ID correcto
         modifyButton.setOnClickListener(v -> {
             // Obtener el texto de los campos antes de validar
             name = nameEditText.getText().toString().trim();
@@ -94,7 +100,40 @@ public class FragmentProfile extends Fragment {
             bottomNavigationView.setSelectedItemId(R.id.profile);
         });
 
+
+
+
+        Button saveButton = view.findViewById(R.id.btnSave);  // Asegúrate de usar el ID correcto
+        saveButton.setOnClickListener(v -> {
+            // Obtener los valores de los campos de texto
+            name = nameEditText.getText().toString().trim();
+            adress = adressEditText.getText().toString().trim();
+            tl = tlEditText.getText().toString().trim();
+
+            // Validar si los campos no están vacíos antes de guardar
+            if (!name.isEmpty() && !adress.isEmpty() && !tl.isEmpty()) {
+                // Guardar en SharedPreferences
+                saveProfileData(getContext(), name, adress, tl);
+                // Mostrar mensaje de confirmación
+                Toast.makeText(getActivity(), "Perfil guardado correctamente.", Toast.LENGTH_SHORT).show();
+            } else {
+                // Mensaje si hay campos vacíos
+                Toast.makeText(getActivity(), "Por favor complete todos los campos.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         return view;
+    }
+
+    // Método para cargar los datos guardados en SharedPreferences
+    private void loadProfileData(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("profile", Context.MODE_PRIVATE);
+        String savedName = sharedPreferences.getString("user_name", "Nombre de usuario");  // Valor predeterminado si no se ha guardado
+
+        // Establecer los valores en las vistas correspondientes
+        fullname.setText(savedName);  // Mostrar el nombre guardado en el TextView
+        nameEditText.setText(savedName);  // Mostrar el nombre guardado en el EditText
     }
 
 
@@ -136,5 +175,16 @@ public class FragmentProfile extends Fragment {
         if (purchaseCount != null) {
             purchaseCount.setText("Compras realizadas: " + currentPurchaseCount);  // Mostrar el contador actualizado
         }
+    }
+
+    // Método para guardar los datos en SharedPreferences
+    private void saveProfileData(Context context, String name, String adress, String tl) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("profile", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user_name", name);  // Guarda el nombre
+        editor.putString("user_adress", adress);  // Guarda la dirección
+        editor.putString("user_tl", tl);  // Guarda el teléfono
+        editor.apply();  // Aplica los cambios
+
     }
 }

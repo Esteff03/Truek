@@ -28,12 +28,16 @@
     <!--Strings profile-->
     <string name="full_name" translatable="false">Nombre de usuario</string>
     <string name="payment_desc" translatable="false">Wallet</string>
+    <string name="experiencia" translatable="false">Inexperienced user</string>
+    <string name="payment" translatable="false">15$</string>
     <string name="name" translatable="false">Nombre de usuario</string>
+    <string name="ad" translatable="false">Adress</string>
     <string name="adress" translatable="false">Calle, número, CP</string>
+    <string name="t" translatable="false">Phone number</string>
     <string name="tl" translatable="false">+34 655 55 55 55</string>
-    <string name="btnUpdate" translatable="false">Actualizar</string>
-    <string name="btnSave" translatable="false">Guardar</string>
-    <string name="booking_desc" translatable="false">Divisa</string>
+    <string name="btnUpdate" translatable="false">Update</string>
+    <string name="btnSave" translatable="false">Save</string>
+    <string name="booking_desc" translatable="false">Exchange</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

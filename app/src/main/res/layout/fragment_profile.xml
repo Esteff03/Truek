@@ -35,7 +35,7 @@
                         android:id="@+id/full_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nombre de usuario"
+                        android:text="@string/full_name"
                         android:textSize="20sp"
                         android:layout_toRightOf="@+id/profile_image"
                         android:layout_centerVertical="true"
@@ -43,9 +43,10 @@
                         android:layout_marginLeft="10dp"/>
 
                     <TextView
+                        android:id="@+id/experiencia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Inexperienced user"
+                        android:text="@string/experiencia"
                         android:textSize="14sp"
                         android:layout_toRightOf="@+id/profile_image"
                         android:layout_below="@id/full_name"
@@ -84,7 +85,7 @@
                                 android:id="@+id/payment"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="$15"
+                                android:text="@string/payment"
                                 android:textSize="20sp"
                                 android:layout_centerInParent="true"
                                 android:includeFontPadding="false"/>
@@ -93,7 +94,7 @@
                                 android:id="@+id/payment_desc"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Wallet"
+                                android:text="@string/payment_desc"
                                 android:textSize="14sp"
                                 android:layout_below="@id/payment"
                                 android:layout_centerHorizontal="true"
@@ -134,7 +135,7 @@
                                 android:id="@+id/booking_desc"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Exchange"
+                                android:text="@string/booking_desc"
                                 android:textSize="14sp"
                                 android:layout_below="@id/exchange"
                                 android:layout_centerHorizontal="true"
@@ -155,7 +156,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:hint="Full Name">
+                        android:hint="@string/full_name">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/name"
@@ -163,7 +164,7 @@
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/profile_usericon"
                             android:drawablePadding="10dp"
-                            android:text="Nombre de usuario"/>
+                            android:text="@string/full_name"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!-- Direccion -->
@@ -171,7 +172,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:hint="Adress">
+                        android:hint="@string/ad">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/adress"
@@ -179,7 +180,7 @@
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/profile_email"
                             android:drawablePadding="10dp"
-                            android:text="Calle, número, CP"/>
+                            android:text="@string/adress"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!-- Teléfono -->
@@ -187,7 +188,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:hint="Phone number">
+                        android:hint="@string/t">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/tl"
@@ -195,7 +196,7 @@
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/profile_phone"
                             android:drawablePadding="10dp"
-                            android:text="+34 655 55 55 55"/>
+                            android:text="@string/tl"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!-- Botones de actualización y guardado -->
@@ -206,7 +207,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="5dp"
                         android:background="#CCA9DD"
-                        android:text="Update"
+                        android:text="@string/btnUpdate"
                         android:textColor="#FFFFFF"/>
 
                     <Button
@@ -216,7 +217,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="10dp"
                         android:background="#A9CCE3"
-                        android:text="Save"
+                        android:text="@string/btnSave"
                         android:textColor="#FFFFFF"/>
                 </LinearLayout>
 
