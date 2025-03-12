@@ -1,9 +1,12 @@
 package fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sbjs.truek.AdaptadorProducto;
 import com.sbjs.truek.Categories;
+import com.sbjs.truek.MainView;
 import com.sbjs.truek.Notifications;
 import com.sbjs.truek.Producto;
 import com.sbjs.truek.R;
@@ -32,12 +38,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class FragmentHome extends Fragment {
     private static final String SUPABASE_URL = "https://pgosafydlwskwtvnuokk.supabase.co/rest/v1/products?select=*";
+    private static final String LOGOUT_ENDPOINT = "https://pgosafydlwskwtvnuokk.supabase.co";
     private static final String SUPABASE_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnb3NhZnlkbHdza3d0dm51b2trIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk0MzgyMTcsImV4cCI6MjA1NTAxNDIxN30.EmB_NLAqXji3UhtgaQsc4VmGrtnUHQlNiAb6Oau3fQo";
 
     private RecyclerView recyclerView;
@@ -45,11 +56,12 @@ public class FragmentHome extends Fragment {
     private List<Producto> productList;
     private TextView tvNoData;
     private Button categorias, favoritos, modifyComprar;
-    private ImageView notificaciones;
+    private ImageView notificaciones, ajuste;
 
     public FragmentHome() {
         // Constructor vacío requerido
     }
+
 
     @Nullable
     @Override
@@ -64,6 +76,15 @@ public class FragmentHome extends Fragment {
         categorias = view.findViewById(R.id.button1);
         favoritos = view.findViewById(R.id.button2);
         notificaciones = view.findViewById(R.id.message);
+        ajuste = view.findViewById(R.id.ajustes);
+
+
+        ajuste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarMenu(v);
+            }
+        });
 
 
         categorias.setOnClickListener(new View.OnClickListener() {
@@ -109,8 +130,58 @@ public class FragmentHome extends Fragment {
         recyclerView.setAdapter(adapter);
 
         fetchProductsFromSupabase();
+
+
         return view;
     }
+
+    private void mostrarMenu(View v) {
+        PopupMenu popup = new PopupMenu(requireContext(), v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_settings, popup.getMenu()); // Asegúrate de que el archivo XML del menú se llama `menu_ajustes.xml`
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.menu_logout) {
+                    mostrarDialogoCerrarSesion();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        popup.show();
+    }
+
+    private void mostrarDialogoCerrarSesion() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Cerrar sesión");
+        builder.setMessage("¿Seguro que quieres cerrar sesión?");
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                irAMainView(); // Llamar a la función que redirige a MainView
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void irAMainView() {
+        Intent intent = new Intent(getActivity(), MainView.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Elimina el historial de actividades
+        startActivity(intent);
+    }
+
+
 
     private void fetchProductsFromSupabase() {
         new Thread(() -> {
