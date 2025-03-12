@@ -74,11 +74,6 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 
 *Profile*
-Image-profile:
-
-
-![image](https://github.com/user-attachments/assets/3d46dea9-761e-454c-a0b7-a122b0104adc)
-
 
 
 Gif-profile:
@@ -130,6 +125,20 @@ Button modifyComprar = findViewById(R.id.btnComprar);  // Botón de compra
 ![toolbarnav](https://github.com/user-attachments/assets/c06befa0-417e-43ad-94c9-436fac257571)
 
 
+Aplicaciçon finalizada: 
+
+![image](https://github.com/user-attachments/assets/4a1b0249-14f4-4ec2-80b4-9d60eca7f263)
+
+![image](https://github.com/user-attachments/assets/1aed303e-4b29-43b2-b9d3-0e490e5014e6)
+
+![image](https://github.com/user-attachments/assets/94e7c410-51b1-4566-b45c-bb6435a33184)
+
+
+![image](https://github.com/user-attachments/assets/85f44915-c29c-4da5-9c9f-fdc840877ba8)
+
+![image](https://github.com/user-attachments/assets/cf17aff8-38ee-4c8b-b1c6-8ac8cc0218cb)
+
+![image](https://github.com/user-attachments/assets/ed978a8a-d698-4db9-a19f-f9da3ca5d8d4)
 
 
 Roles de desarrollo:  
