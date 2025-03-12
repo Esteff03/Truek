@@ -74,11 +74,6 @@ desperdicio y reutilizar recursos, todo a través del intercambio justo.
 
 
 *Profile*
-Image-profile:
-
-
-![image](https://github.com/user-attachments/assets/3d46dea9-761e-454c-a0b7-a122b0104adc)
-
 
 
 Gif-profile:
