@@ -1,4 +1,4 @@
-**TRUEK**
+**TRUEK** 📱🚀🚀 
 
 Aplicación móvil para intercambio de productos o servicios, sin la necesidad de utilizar dinero, ya que se pueden realizar trueques. 
 
