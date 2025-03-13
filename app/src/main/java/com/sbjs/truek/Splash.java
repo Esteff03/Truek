@@ -21,17 +21,15 @@ public class Splash extends BaseActivity {
         setContentView(R.layout.activity_splash);
 
 
-
+        new Handler().postDelayed(() -> {
+            startAnimationSequence();
+        }, 600);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        new Handler().postDelayed(() -> {
-            startAnimationSequence();
-        }, 600);
     }
 
     private void startAnimationSequence() {
